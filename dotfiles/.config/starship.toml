@@ -1,0 +1,24 @@
+[java]
+disabled = true
+
+[nodejs]
+disabled = true
+
+[python]
+disabled = true
+
+[directory]
+truncate_to_repo = false
+
+[cmd_duration]
+min_time = 100
+show_milliseconds = true
+#show_notifications = true
+
+[character]
+success_symbol = "[➜](bold green) "
+error_symbol = "[✗](bold red) "
+
+[hostname]
+ssh_only = false
+disabled = false

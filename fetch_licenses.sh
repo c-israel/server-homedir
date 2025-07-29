@@ -1,0 +1,143 @@
+#!/usr/bin/env bash
+
+#
+# This script downloads all third-party license files for the components
+# included in the server-homedir artifact.
+#
+# It reads a list of components and URLs, converts GitHub blob URLs to raw
+# URLs, and saves each license file in the 'licenses/' directory.
+#
+# USAGE:
+#   ./fetch-licenses.sh
+#
+# DEPENDENCIES:
+#   - wget
+#
+
+# Exit immediately if a command exits with a non-zero status.
+set -e
+
+# Define the output directory
+LICENSES_DIR="licenses"
+
+# --- Main Configuration ---
+# Associative array to hold component names and their license URLs.
+#
+# Format:
+#   ["component-name"]="https://github.com/user/repo/blob/branch/LICENSE.txt"
+#
+# The script will automatically create a filesystem-friendly filename.
+declare -A GITHUB_LICENSES
+
+# Tools
+GITHUB_LICENSES["kickstart-nvim"]="https://github.com/nvim-lua/kickstart.nvim/blob/master/LICENSE.md"
+GITHUB_LICENSES["starship"]="https://github.com/starship/starship/blob/v1.23.0/LICENSE"
+GITHUB_LICENSES["neovim"]="https://github.com/neovim/neovim/blob/v0.11.3/LICENSE.txt"
+GITHUB_LICENSES["fzf"]="https://github.com/junegunn/fzf/blob/v0.64.0/LICENSE"
+GITHUB_LICENSES["ripgrep"]="https://github.com/BurntSushi/ripgrep/blob/14.1.1/UNLICENSE"
+GITHUB_LICENSES["static-curl_mit"]="https://github.com/stunnel/static-curl/blob/main/LICENSE"
+GITHUB_LICENSES["static-curl_curl"]="https://github.com/curl/curl/blob/master/COPYING"
+GITHUB_LICENSES["lnav"]="https://github.com/tstack/lnav/blob/v0.13.0/LICENSE"
+GITHUB_LICENSES["erdtree"]="https://github.com/solidiquis/erdtree/blob/v3.1.2/LICENSE"
+GITHUB_LICENSES["delta"]="https://github.com/dandavison/delta/blob/0.18.2/LICENSE"
+GITHUB_LICENSES["jq"]="https://github.com/jqlang/jq/blob/jq-1.8.1/COPYING"
+GITHUB_LICENSES["bat"]="https://github.com/sharkdp/bat/blob/v0.25.0/LICENSE-MIT"
+GITHUB_LICENSES["lsd"]="https://github.com/lsd-rs/lsd/blob/v1.1.5/LICENSE"
+GITHUB_LICENSES["stylua"]="https://github.com/JohnnyMorganz/StyLua/blob/main/LICENSE.md"
+
+# Neovim Plugins
+GITHUB_LICENSES["nvim-nio"]="https://github.com/nvim-neotest/nvim-nio/blob/master/LICENCE.md"
+GITHUB_LICENSES["friendly-snippets"]="https://github.com/rafamadriz/friendly-snippets/blob/main/LICENSE"
+GITHUB_LICENSES["cmp-cmdline"]="https://github.com/hrsh7th/cmp-cmdline/blob/main/LICENSE"
+GITHUB_LICENSES["cmp_luasnip"]="https://github.com/saadparwaiz1/cmp_luasnip/blob/master/LICENSE"
+GITHUB_LICENSES["formatter-nvim"]="https://github.com/mhartington/formatter.nvim/blob/master/LICENSE"
+GITHUB_LICENSES["cmp-path"]="https://github.com/hrsh7th/cmp-path/blob/main/LICENSE"
+GITHUB_LICENSES["lspkind-nvim"]="https://github.com/onsails/lspkind.nvim/blob/master/LICENSE"
+GITHUB_LICENSES["lazy-nvim"]="https://github.com/folke/lazy.nvim/blob/main/LICENSE"
+GITHUB_LICENSES["mason-lspconfig-nvim"]="https://github.com/mason-org/mason-lspconfig.nvim/blob/main/LICENSE"
+GITHUB_LICENSES["lualine-nvim"]="https://github.com/nvim-lualine/lualine.nvim/blob/master/LICENSE"
+GITHUB_LICENSES["nvim-web-devicons"]="https://github.com/nvim-tree/nvim-web-devicons/blob/master/LICENSE"
+GITHUB_LICENSES["mason-nvim"]="https://github.com/mason-org/mason.nvim/blob/main/LICENSE"
+GITHUB_LICENSES["snacks-nvim"]="https://github.com/folke/snacks.nvim/blob/main/LICENSE"
+GITHUB_LICENSES["nvim-treesitter"]="https://github.com/nvim-treesitter/nvim-treesitter/blob/master/LICENSE"
+GITHUB_LICENSES["which-key-nvim"]="https://github.com/folke/which-key.nvim/blob/main/LICENSE"
+GITHUB_LICENSES["nvim-dap"]="https://github.com/mfussenegger/nvim-dap/blob/master/LICENSE.txt"
+GITHUB_LICENSES["cmp-buffer"]="https://github.com/hrsh7th/cmp-buffer/blob/main/LICENSE"
+GITHUB_LICENSES["nvim-lspconfig"]="https://github.com/neovim/nvim-lspconfig/blob/master/LICENSE.md"
+GITHUB_LICENSES["luasnip"]="https://github.com/L3MON4D3/LuaSnip/blob/master/LICENSE"
+GITHUB_LICENSES["nvim-lint"]="https://github.com/mfussenegger/nvim-lint/blob/master/LICENSE.txt"
+GITHUB_LICENSES["nvim-dap-ui"]="https://github.com/rcarriga/nvim-dap-ui/blob/master/LICENCE.md"
+GITHUB_LICENSES["cmp-nvim-lsp"]="https://github.com/hrsh7th/cmp-nvim-lsp/blob/main/LICENSE"
+GITHUB_LICENSES["vim-rhubarb"]="https://github.com/tpope/vim-rhubarb/blob/master/LICENSE"
+GITHUB_LICENSES["nvim-cmp"]="https://github.com/hrsh7th/nvim-cmp/blob/main/LICENSE"
+#GITHUB_LICENSES["vim-fugitive"]="https://github.com/tpope/vim-fugitive/blob/master/LICENSE"
+#GITHUB_LICENSES["vim-sleuth"]="https://github.com/tpope/vim-sleuth/blob/master/LICENSE"
+
+# --- Configuration: Canonical Licenses ---
+# For licenses like the Vim License, which are referenced but not included.
+declare -A CANONICAL_LICENSE_URLS
+# The raw text of the Vim license from the official Vim repository.
+CANONICAL_LICENSE_URLS["vim-license"]="https://raw.githubusercontent.com/vim/vim/master/runtime/doc/uganda.txt"
+
+declare -A COMPONENTS_BY_CANONICAL_LICENSE
+# Space-separated list of components using the Vim License.
+COMPONENTS_BY_CANONICAL_LICENSE["vim-license"]="vim-fugitive vim-sleuth"
+
+# --- Main Script Logic ---
+
+echo "Creating licenses directory: ${LICENSES_DIR}"
+mkdir -p "$LICENSES_DIR"
+
+
+echo -e "\n--- Downloading and Distributing Canonical Licenses ---"
+for license_type in "${!COMPONENTS_BY_CANONICAL_LICENSE[@]}"; do
+    url="${CANONICAL_LICENSE_URLS[$license_type]}"
+    components="${COMPONENTS_BY_CANONICAL_LICENSE[$license_type]}"
+
+    # Download the canonical license text once
+    canonical_filename="_canonical.${license_type}.txt"
+    echo "Fetching canonical license '${license_type}' from ${url}"
+    wget -q -O "${LICENSES_DIR}/${canonical_filename}" "$url" || { echo "ERROR: Failed to download canonical license ${license_type}"; exit 1; }
+
+    # Copy the canonical license for each component that uses it
+    for component in $components; do
+        output_path="${LICENSES_DIR}/${component}.LICENSE.txt"
+        echo "  -> Applying to '${component}'"
+        cp "${LICENSES_DIR}/${canonical_filename}" "$output_path"
+    done
+done
+
+# Process all GitHub-hosted licenses
+echo -e "\n--- Downloading GitHub Licenses ---"
+for component in "${!GITHUB_LICENSES[@]}"; do
+    url="${GITHUB_LICENSES[$component]}"
+
+    # Convert GitHub blob URL to raw content URL
+    # from: https://github.com/user/repo/blob/branch/file
+    # to:   https://raw.githubusercontent.com/user/repo/branch/file
+    download_url=$(echo "$url" | sed -e 's|github.com|raw.githubusercontent.com|' -e 's|/blob/|/|')
+
+    # Get the original filename from the URL to preserve the extension
+    filename=$(basename "$url")
+    output_path="${LICENSES_DIR}/${component}.${filename}"
+
+    echo "Fetching license for '${component}'..."
+    wget -q -O "$output_path" "$download_url" || { echo "ERROR: Failed to download ${component} from ${download_url}"; exit 1; }
+done
+
+# Process special cases that are not on GitHub or have a different format
+echo -e "\n--- Downloading Other Licenses ---"
+
+
+# Spelling Dictionaries (FTP)
+echo "Fetching license for 'vim-spell-readme'..."
+wget -q -O "${LICENSES_DIR}/vim-spell.README.txt" "https://ftp.nluug.nl/pub/vim/runtime/spell/README.txt"
+
+echo "Fetching license for 'vim-spell-en'..."
+wget -q -O "${LICENSES_DIR}/vim-spell.README_en.txt" "https://ftp.nluug.nl/pub/vim/runtime/spell/README_en.txt"
+
+echo "Fetching license for 'vim-spell-de'..."
+wget -q -O "${LICENSES_DIR}/vim-spell.README_de.txt" "https://ftp.nluug.nl/pub/vim/runtime/spell/README_de.txt"
+
+echo -e "\n\nLicense fetching complete."
+echo "All licenses have been downloaded to the '${LICENSES_DIR}/' directory."

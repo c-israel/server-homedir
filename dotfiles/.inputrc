@@ -1,0 +1,38 @@
+# Don't ring bell on completion
+set bell-style none
+  
+# completion comfort
+set show-all-if-ambiguous on
+set menu-complete-display-prefix on
+set colored-stats on
+set colored-completion-prefix on
+set visible-stats on
+Tab: menu-complete
+
+"\e[3~": delete-char
+
+# VT
+"\e[1~": beginning-of-line
+"\e[4~": end-of-line
+
+# kvt
+"\e[H": beginning-of-line
+"\e[F": end-of-line
+
+# rxvt and konsole (i.e. the KDE-app...)
+"\e[7~": beginning-of-line
+"\e[8~": end-of-line
+
+# VT220
+"\eOH": beginning-of-line
+"\eOF": end-of-line
+
+C-n: complete
+
+"\e[1;5D": backward-word # ctrl-left
+"\e[1;5C": forward-word # ctrl-right
+"\e[1;6C": kill-word # ctrl-shift-right
+"\e[1;6D": backward-kill-word # ctrl-shift-left
+"\e[1;3D": beginning-of-line # meta-left
+"\e[1;3C": end-of-line # meta-right
+
