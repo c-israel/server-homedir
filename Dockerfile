@@ -29,6 +29,9 @@ ENV PATH="/root/.local/bin:${PATH}"
 RUN bash -l -c "nvim --headless -c MasonUpdate -c 'MasonInstall lua-language-server' -c 'TSInstallSync bash python' -c q"
 RUN bash -l -c "nvim --headless -c 'MasonInstall shellcheck' -c q"
 
+# fix for absolute path in lua language server
+RUN sed -i 's/\/root\/.local/~\/.local/g' /root/.local/share/nvim/mason/packages/lua-language-server/lua-language-server
+
 COPY fetch_licenses.sh ./fetch_licenses.sh
 RUN bash fetch_licenses.sh && \
     zip -r server_homedir_THIRD_PARTY_LICENSES.zip licenses && \
