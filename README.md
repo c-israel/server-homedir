@@ -118,6 +118,8 @@ Neovim plugins are included as well:
   [MIT License](https://github.com/hrsh7th/nvim-cmp/blob/main/LICENSE)
 * [lua-language-server](https://github.com/LuaLS/lua-language-server)
   [MIT License](https://github.com/LuaLS/lua-language-server/blob/master/LICENSE)  
+* [shellcheck](https://github.com/koalaman/shellcheck)
+  [GNU GPL v3.0](https://github.com/koalaman/shellcheck/blob/master/LICENSE)
 
 Also packaged are some spelling dictionaries from https://ftp.nluug.nl/pub/vim/runtime/spell.   
 According to the READMEs found there, those are licensed as GPL or LGPL. See [README.txt](https://ftp.nluug.nl/pub/vim/runtime/spell/README.txt) and [README_en.txt](https://ftp.nluug.nl/pub/vim/runtime/spell/README_en.txt) and [README_de.txt](https://ftp.nluug.nl/pub/vim/runtime/spell/README_de.txt)  
