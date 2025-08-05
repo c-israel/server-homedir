@@ -83,6 +83,8 @@ Neovim plugins are included as well:
   [MIT License](https://github.com/nvim-tree/nvim-web-devicons/blob/master/LICENSE)
 * [williamboman/mason.nvim](https://github.com/williamboman/mason.nvim) 
   [Apache 2.0 License](https://github.com/mason-org/mason.nvim/blob/main/LICENSE)
+* [legendary](https://github.com/mrjones2014/legendary.nvim)
+  [MIT License](https://github.com/mrjones2014/legendary.nvim/blob/master/LICENSE)
 * [tpope/vim-sleuth](https://github.com/tpope/vim-sleuth) 
   [Vim License](https://vimdoc.sourceforge.net/htmldoc/uganda.html#license)
 * [folke/snacks.nvim](https://github.com/folke/snacks.nvim) 
@@ -100,7 +102,10 @@ Neovim plugins are included as well:
 * [neovim/nvim-lspconfig](https://github.com/neovim/nvim-lspconfig) 
   [Apache 2.0 License](https://github.com/neovim/nvim-lspconfig/blob/master/LICENSE.md)
 * [L3MON4D3/LuaSnip](https://github.com/L3MON4D3/LuaSnip) 
-  [Apache 2.0 License](https://github.com/L3MON4D3/LuaSnip/blob/master/LICENSE)
+  [Apache 2.0 License](https://github.com/L3MON4D3/LuaSnip/blob/master/LICENSE)  
+  which depends on 
+  * [jsregexp](https://github.com/kmarius/jsregexp/tree/master)
+    [MIT License](https://github.com/kmarius/jsregexp/blob/master/LICENSE)
 * [mfussenegger/nvim-lint](https://github.com/mfussenegger/nvim-lint) 
   [GNU GPL v3.0](https://github.com/mfussenegger/nvim-lint/blob/master/LICENSE.txt)
 * [rcarriga/nvim-dap-ui](https://github.com/rcarriga/nvim-dap-ui) 
@@ -111,6 +116,8 @@ Neovim plugins are included as well:
   [MIT License](https://github.com/tpope/vim-rhubarb/blob/master/LICENSE)
 * [hrsh7th/nvim-cmp](https://github.com/hrsh7th/nvim-cmp) 
   [MIT License](https://github.com/hrsh7th/nvim-cmp/blob/main/LICENSE)
+* [lua-language-server](https://github.com/LuaLS/lua-language-server)
+  [MIT License](https://github.com/LuaLS/lua-language-server/blob/master/LICENSE)  
 
 Also packaged are some spelling dictionaries from https://ftp.nluug.nl/pub/vim/runtime/spell.   
 According to the READMEs found there, those are licensed as GPL or LGPL. See [README.txt](https://ftp.nluug.nl/pub/vim/runtime/spell/README.txt) and [README_en.txt](https://ftp.nluug.nl/pub/vim/runtime/spell/README_en.txt) and [README_de.txt](https://ftp.nluug.nl/pub/vim/runtime/spell/README_de.txt)  

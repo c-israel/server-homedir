@@ -70,6 +70,9 @@ GITHUB_LICENSES["nvim-dap-ui"]="https://github.com/rcarriga/nvim-dap-ui/blob/mas
 GITHUB_LICENSES["cmp-nvim-lsp"]="https://github.com/hrsh7th/cmp-nvim-lsp/blob/main/LICENSE"
 GITHUB_LICENSES["vim-rhubarb"]="https://github.com/tpope/vim-rhubarb/blob/master/LICENSE"
 GITHUB_LICENSES["nvim-cmp"]="https://github.com/hrsh7th/nvim-cmp/blob/main/LICENSE"
+GITHUB_LICENSES["legendary"]="https://github.com/mrjones2014/legendary.nvim/blob/master/LICENSE"
+GITHUB_LICENSES["jsregexp"]="https://github.com/kmarius/jsregexp/blob/master/LICENSE"
+GITHUB_LICENSES["lua-language-server"]="https://github.com/LuaLS/lua-language-server/blob/master/LICENSE"
 #GITHUB_LICENSES["vim-fugitive"]="https://github.com/tpope/vim-fugitive/blob/master/LICENSE"
 #GITHUB_LICENSES["vim-sleuth"]="https://github.com/tpope/vim-sleuth/blob/master/LICENSE"
 
