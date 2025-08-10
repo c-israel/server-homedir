@@ -66,4 +66,5 @@ NVIM_URL="https://github.com/neovim/neovim/releases/download/v0.11.3/nvim-linux-
 
 STYLUA_URL="https://github.com/JohnnyMorganz/StyLua/releases/download/v0.20.0/stylua-linux-x86_64-musl.zip"
 
-SPELL_BASEURL="https://ftp.nluug.nl/pub/vim/runtime/spell"
+## don't include spell files - difficult to meet GPL source distribution requirements.
+#SPELL_BASEURL="https://ftp.nluug.nl/pub/vim/runtime/spell"

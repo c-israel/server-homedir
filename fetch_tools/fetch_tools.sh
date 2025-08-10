@@ -81,11 +81,12 @@ cd "$WORK_DIR"
 
 wget "$STYLUA_URL" -O "$WORK_DIR/stylua.zip" && unzip "$WORK_DIR/stylua.zip" && mv stylua "$TARGET_DIR/.local/bin/stylua" && rm "$WORK_DIR/stylua.zip"
 
-mkdir -p "$TARGET_DIR/.config/nvim/spell"
-for spellfile in {de,en}.utf-8.{spl,sug};
-do
-  wget "$SPELL_BASEURL/$spellfile" -O "$TARGET_DIR/.config/nvim/spell/$spellfile"
-done
+## don't include spell files - difficult to meet GPL source distribution requirements.
+# mkdir -p "$TARGET_DIR/.config/nvim/spell"
+# for spellfile in {de,en}.utf-8.{spl,sug};
+# do
+#   wget "$SPELL_BASEURL/$spellfile" -O "$TARGET_DIR/.config/nvim/spell/$spellfile"
+# done
 
 for file in "$TARGET_DIR"/.local/bin/*;
 do

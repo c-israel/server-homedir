@@ -133,15 +133,16 @@ done
 echo -e "\n--- Downloading Other Licenses ---"
 
 
-# Spelling Dictionaries (FTP)
-echo "Fetching license for 'vim-spell-readme'..."
-wget -q -O "${LICENSES_DIR}/vim-spell.README.txt" "https://ftp.nluug.nl/pub/vim/runtime/spell/README.txt"
-
-echo "Fetching license for 'vim-spell-en'..."
-wget -q -O "${LICENSES_DIR}/vim-spell.README_en.txt" "https://ftp.nluug.nl/pub/vim/runtime/spell/README_en.txt"
-
-echo "Fetching license for 'vim-spell-de'..."
-wget -q -O "${LICENSES_DIR}/vim-spell.README_de.txt" "https://ftp.nluug.nl/pub/vim/runtime/spell/README_de.txt"
+## Spelling Dictionaries (FTP)
+## don't include spell files - difficult to meet GPL source distribution requirements.
+#echo "Fetching license for 'vim-spell-readme'..."
+#wget -q -O "${LICENSES_DIR}/vim-spell.README.txt" "https://ftp.nluug.nl/pub/vim/runtime/spell/README.txt"
+#
+#echo "Fetching license for 'vim-spell-en'..."
+#wget -q -O "${LICENSES_DIR}/vim-spell.README_en.txt" "https://ftp.nluug.nl/pub/vim/runtime/spell/README_en.txt"
+#
+#echo "Fetching license for 'vim-spell-de'..."
+#wget -q -O "${LICENSES_DIR}/vim-spell.README_de.txt" "https://ftp.nluug.nl/pub/vim/runtime/spell/README_de.txt"
 
 echo -e "\n\nLicense fetching complete."
 echo "All licenses have been downloaded to the '${LICENSES_DIR}/' directory."

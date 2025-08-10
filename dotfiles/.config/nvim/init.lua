@@ -30,7 +30,7 @@ vim.o.completeopt = "menuone,noselect" -- better completion menu behavior
 
 vim.o.termguicolors = true -- enables 24-bit RGB color
 
-vim.opt.spell = true
+vim.opt.spell = false -- disable by default so we don't block downloading dictionaries
 vim.opt.spelllang = { "en", "de" }
 
 vim.cmd("colorscheme desert")

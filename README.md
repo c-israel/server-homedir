@@ -120,7 +120,3 @@ Neovim plugins are included as well:
   [MIT License](https://github.com/LuaLS/lua-language-server/blob/master/LICENSE)  
 * [shellcheck](https://github.com/koalaman/shellcheck)
   [GNU GPL v3.0](https://github.com/koalaman/shellcheck/blob/master/LICENSE)
-
-Also packaged are some spelling dictionaries from https://ftp.nluug.nl/pub/vim/runtime/spell.   
-According to the READMEs found there, those are licensed as GPL or LGPL. See [README.txt](https://ftp.nluug.nl/pub/vim/runtime/spell/README.txt) and [README_en.txt](https://ftp.nluug.nl/pub/vim/runtime/spell/README_en.txt) and [README_de.txt](https://ftp.nluug.nl/pub/vim/runtime/spell/README_de.txt)  
-The original sources, as far as I can tell, are: [LibreOffice dictionaries](https://github.com/LibreOffice/dictionaries), [German LibreOffice Spellchecker Extension](https://extensions.libreoffice.org/en/extensions/show/german-de-de-frami-dictionaries), [GNU Aspell dictionaries](https://ftp.gnu.org/gnu/aspell/dict/), [SCOWL](http://wordlist.aspell.net/), [OpenOffice English Dictionaries](https://extensions.openoffice.org/en/node/3785)
