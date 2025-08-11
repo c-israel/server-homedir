@@ -81,6 +81,8 @@ cd "$WORK_DIR"
 
 wget "$STYLUA_URL" -O "$WORK_DIR/stylua.zip" && unzip "$WORK_DIR/stylua.zip" && mv stylua "$TARGET_DIR/.local/bin/stylua" && rm "$WORK_DIR/stylua.zip"
 
+wget "$TMUX_URL" -O - | gunzip > "$TARGET_DIR/.local/bin/tmux"
+
 ## don't include spell files - difficult to meet GPL source distribution requirements.
 # mkdir -p "$TARGET_DIR/.config/nvim/spell"
 # for spellfile in {de,en}.utf-8.{spl,sug};

@@ -74,6 +74,8 @@ GITHUB_LICENSES["legendary"]="https://github.com/mrjones2014/legendary.nvim/blob
 GITHUB_LICENSES["jsregexp"]="https://github.com/kmarius/jsregexp/blob/master/LICENSE"
 GITHUB_LICENSES["lua-language-server"]="https://github.com/LuaLS/lua-language-server/blob/master/LICENSE"
 GITHUB_LICENSES["shellcheck"]="https://github.com/koalaman/shellcheck/blob/master/LICENSE"
+GITHUB_LICENSES["tmux"]="https://github.com/tmux/tmux/blob/3.5a/COPYING"
+GITHUB_LICENSES["build-static-tmux"]="https://github.com/mjakob-gh/build-static-tmux/blob/v3.5d/LICENSE"
 #GITHUB_LICENSES["vim-fugitive"]="https://github.com/tpope/vim-fugitive/blob/master/LICENSE"
 #GITHUB_LICENSES["vim-sleuth"]="https://github.com/tpope/vim-sleuth/blob/master/LICENSE"
 

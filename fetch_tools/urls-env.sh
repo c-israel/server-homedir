@@ -66,5 +66,7 @@ NVIM_URL="https://github.com/neovim/neovim/releases/download/v0.11.3/nvim-linux-
 
 STYLUA_URL="https://github.com/JohnnyMorganz/StyLua/releases/download/v0.20.0/stylua-linux-x86_64-musl.zip"
 
+TMUX_URL="https://github.com/mjakob-gh/build-static-tmux/releases/download/v3.5d/tmux.linux-amd64.gz"
+
 ## don't include spell files - difficult to meet GPL source distribution requirements.
 #SPELL_BASEURL="https://ftp.nluug.nl/pub/vim/runtime/spell"

@@ -57,6 +57,15 @@ The artifact produced by this repository is an aggregate that combines artifacts
 * [StyLua](https://github.com/JohnnyMorganz/StyLua/)
   [v0.20.0](https://github.com/JohnnyMorganz/StyLua/releases/tag/v0.20.0)
   [MPL 2.0](https://github.com/JohnnyMorganz/StyLua/blob/main/LICENSE.md)
+  (lua formatter)
+* [tmux](https://github.com/tmux/tmux)
+  via [build-static-tmux](https://github.com/mjakob-gh/build-static-tmux)
+  [3.5a](https://github.com/tmux/tmux/releases/tag/3.5a)
+  / [3.5d](https://github.com/mjakob-gh/build-static-tmux/releases/tag/v3.5d)
+  [ISC License](https://github.com/tmux/tmux/blob/3.5a/COPYING)
+  and [MIT License](https://github.com/mjakob-gh/build-static-tmux/blob/v3.5d/LICENSE)
+  (terminal multiplexer)
+ 
 
 Neovim plugins are included as well:
 * [nvim-neotest/nvim-nio](https://github.com/nvim-neotest/nvim-nio) 

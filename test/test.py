@@ -46,12 +46,21 @@ def test_tool_versions(bash_session):
         "bat", "jq", "fzf", "rg", "curl", "lnav",
         "erd", "delta", "lsd", "stylua", "nvim", "starship"
     ]
+    tools_other_version_arg = ["tmux"]
     for tool in tools_to_check:
         bash_session.sendline(f'{tool} --version')
         bash_session.expect(PROMPT_PATTERN, timeout=2)
         output = bash_session.before
         assert "Error" not in output, f"Error found in output of '{tool} --version':\n{output}"
         assert "command not found" not in output, f"'{tool}' not found."
+
+    for tool in tools_other_version_arg:
+        bash_session.sendline(f'{tool} -V')
+        bash_session.expect(PROMPT_PATTERN, timeout=2)
+        output = bash_session.before
+        assert "Error" not in output, f"Error found in output of '{tool} -V':\n{output}"
+        assert "command not found" not in output, f"'{tool}' not found."
+
 
 def test_neovim_startup_no_errors(bash_session):
     """
