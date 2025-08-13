@@ -1,0 +1,32 @@
+name: Test on Branches
+permissions:
+  checks: write
+  pull-requests: write
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Build Docker image
+        run: docker build --tag server-homedir-builder .
+
+      - name: Run tests
+        run: bash ./run_tests.sh
+
+      - name: Publish Test Results
+        uses: EnricoMi/publish-unit-test-result-action@v2
+        if: always()
+        with:
+          files: test_report.xml
+          check_name: "Test Results"
+          comment_title: "Test Results"
+          fail_on: "test failures"
