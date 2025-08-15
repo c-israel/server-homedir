@@ -35,15 +35,15 @@ GITHUB_LICENSES["starship"]="https://github.com/starship/starship/blob/v1.23.0/L
 GITHUB_LICENSES["neovim"]="https://github.com/neovim/neovim/blob/v0.11.3/LICENSE.txt"
 GITHUB_LICENSES["fzf"]="https://github.com/junegunn/fzf/blob/v0.64.0/LICENSE"
 GITHUB_LICENSES["ripgrep"]="https://github.com/BurntSushi/ripgrep/blob/14.1.1/UNLICENSE"
-GITHUB_LICENSES["static-curl_mit"]="https://github.com/stunnel/static-curl/blob/main/LICENSE"
-GITHUB_LICENSES["static-curl_curl"]="https://github.com/curl/curl/blob/master/COPYING"
+GITHUB_LICENSES["static-curl_mit"]="https://github.com/stunnel/static-curl/blob/8.15.0/LICENSE"
+GITHUB_LICENSES["static-curl_curl"]="https://github.com/curl/curl/blob/curl-8_15_0/COPYING"
 GITHUB_LICENSES["lnav"]="https://github.com/tstack/lnav/blob/v0.13.0/LICENSE"
 GITHUB_LICENSES["erdtree"]="https://github.com/solidiquis/erdtree/blob/v3.1.2/LICENSE"
 GITHUB_LICENSES["delta"]="https://github.com/dandavison/delta/blob/0.18.2/LICENSE"
 GITHUB_LICENSES["jq"]="https://github.com/jqlang/jq/blob/jq-1.8.1/COPYING"
 GITHUB_LICENSES["bat"]="https://github.com/sharkdp/bat/blob/v0.25.0/LICENSE-MIT"
 GITHUB_LICENSES["lsd"]="https://github.com/lsd-rs/lsd/blob/v1.1.5/LICENSE"
-GITHUB_LICENSES["stylua"]="https://github.com/JohnnyMorganz/StyLua/blob/main/LICENSE.md"
+GITHUB_LICENSES["stylua"]="https://github.com/JohnnyMorganz/StyLua/blob/v0.20.0/LICENSE.md"
 
 # Neovim Plugins
 GITHUB_LICENSES["nvim-nio"]="https://github.com/nvim-neotest/nvim-nio/blob/master/LICENCE.md"

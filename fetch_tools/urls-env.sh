@@ -5,7 +5,7 @@ LSD_URL="https://github.com/lsd-rs/lsd/releases/download/v1.1.5/lsd-v1.1.5-x86_6
 
 # bat + manpage + completion
 # contains binary+manpage+completions
-BAT_URL="https://github.com/sharkdp/bat/releases/download/v0.25.0/bat-v0.25.0-i686-unknown-linux-musl.tar.gz"
+BAT_URL="https://github.com/sharkdp/bat/releases/download/v0.25.0/bat-v0.25.0-x86_64-unknown-linux-musl.tar.gz"
 
 # jq + manpage
 # is binary
@@ -27,7 +27,7 @@ DELTA_MANPAGE_URL="https://manpages.ubuntu.com/manpages.gz/noble/man1/delta.1.gz
 # BUSYBOX_URL="https://busybox.net/downloads/binaries/1.35.0-x86_64-linux-musl/busybox"
 
 # contains binary
-CURL_URL="https://github.com/stunnel/static-curl/releases/download/8.12.1/curl-linux-i686-musl-8.12.1.tar.xz"
+CURL_URL="https://github.com/stunnel/static-curl/releases/download/8.15.0/curl-linux-x86_64-musl-8.15.0.tar.xz"
 
 
 # erd + completion
