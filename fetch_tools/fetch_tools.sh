@@ -2,86 +2,74 @@
 
 set -euo pipefail
 
-. ./urls-env.sh
+# shellcheck source=./urls-env.sh
+. ./urls-env"${ARCH:=}".sh
 
-[ -d ./work ] && rm -r ./work
 [ -d ./target ] && rm -r ./target
-WORK_DIR=$(realpath ./work)
 TARGET_DIR=$(realpath ./target)
+mkdir -p "$TARGET_DIR"/.local/{bin/man/man1,share/bash-completion/completions}
+BIN_TARGET="$TARGET_DIR/.local/bin"
+MAN_TARGET="$TARGET_DIR/.local/bin/man/man1"
+COMP_TARGET="$TARGET_DIR/.local/share/bash-completion/completions"
 
-mkdir -p "$WORK_DIR"
 mkdir -p "$TARGET_DIR/.local/bin/man/man1"
 mkdir -p "$TARGET_DIR/.local/share/bash-completion/completions"
 mkdir -p "$TARGET_DIR/.local/share/nvim/lazy"
 mkdir -p "$TARGET_DIR/.config/nvim"
 
-cd "$WORK_DIR"
 
-mkdir -p "$WORK_DIR/lsd"
-wget "$LSD_URL" -O - | tar -xzvf - --strip-components=1 -C "$WORK_DIR/lsd"
-mv "$WORK_DIR/lsd/lsd" "$TARGET_DIR/.local/bin/lsd"
-mv "$WORK_DIR/lsd/lsd.1" "$TARGET_DIR/.local/bin/man/man1/lsd.1"
-mv "$WORK_DIR/lsd/autocomplete/lsd.bash-completion" "$TARGET_DIR/.local/share/bash-completion/completions/lsd"
-rm -r "$WORK_DIR/lsd"
+wget -O - "$LSD_URL" | tee \
+    >(tar -xzvf - --to-stdout --wildcards '*/lsd' > "$BIN_TARGET/lsd") \
+    >(tar -xzvf - --to-stdout --wildcards '*/lsd.1' > "$MAN_TARGET/lsd.1") \
+    >(tar -xzvf - --to-stdout --wildcards '*/autocomplete/lsd.bash-completion' > "$COMP_TARGET/lsd") \
+    >/dev/null
 
-mkdir -p "$WORK_DIR/bat"
-wget "$BAT_URL" -O - | tar -xzvf - --strip-components=1 -C "$WORK_DIR/bat"
-mv "$WORK_DIR/bat/bat" "$TARGET_DIR/.local/bin/bat"
-mv "$WORK_DIR/bat/bat.1" "$TARGET_DIR/.local/bin/man/man1/bat.1"
-mv "$WORK_DIR/bat/autocomplete/bat.bash" "$TARGET_DIR/.local/share/bash-completion/completions/bat"
-rm -r "$WORK_DIR/bat"
+wget -O - "$BAT_URL" | tee \
+    >(tar -xzvf - --to-stdout --wildcards '*/bat' > "$BIN_TARGET/bat") \
+    >(tar -xzvf - --to-stdout --wildcards '*/bat.1' > "$MAN_TARGET/bat.1") \
+    >(tar -xzvf - --to-stdout --wildcards '*/autocomplete/bat.bash' > "$COMP_TARGET/bat") \
+    >/dev/null
 
 wget "$JQ_URL" -O "$TARGET_DIR/.local/bin/jq"
 wget "$JQ_MAN_URL" -O "$TARGET_DIR/.local/bin/man/man1/jq.1"
 
-mkdir -p "$WORK_DIR/delta" 
-wget "$DELTA_URL" -O - | tar -xzvf - --strip-components=1 -C "$WORK_DIR/delta"
-mv "$WORK_DIR/delta/delta" "$TARGET_DIR/.local/bin/delta"
-wget "$DELTA_COMPLETIONS_URL" -O "$TARGET_DIR/.local/share/bash-completion/completions/delta"
-wget "$DELTA_MANPAGE_URL" -O - | gunzip > "$TARGET_DIR/.local/bin/man/man1/delta.1"
-rm -r "$WORK_DIR/delta"
+wget "$DELTA_URL" -O - | tar -xzvf - --to-stdout --wildcards '*/delta' > "$BIN_TARGET/delta"
+wget "$DELTA_COMPLETIONS_URL" -O "$COMP_TARGET/delta"
+wget "$DELTA_MANPAGE_URL" -O - | gunzip > "$MAN_TARGET/delta.1"
 
 # wget "$BASH_URL" -O "$TARGET_DIR/.local/bin/bash" # maybe let's not include that
 # wget "$BUSYBOX_URL" -O "$TARGET_DIR/.local/bin/busybox" # not this either
 
-wget "$CURL_URL" -O - | tar -xJvf - && mv curl "$TARGET_DIR/.local/bin/curl"
+wget "$CURL_URL" -O - | tar -xJvf - --exclude SHA256SUMS -C "$BIN_TARGET"
 
-mkdir -p "$WORK_DIR/erd" 
-wget "$ERD_URL" -O - | tar -xzvf - -C "$WORK_DIR/erd"
-"$WORK_DIR/erd/erd" --completions bash > "$TARGET_DIR/.local/share/bash-completion/completions/erd"
-mv "$WORK_DIR/erd/erd" "$TARGET_DIR/.local/bin/erd"
-rm -r "$WORK_DIR/erd"
+wget "$ERD_URL" -O - | tar -xzvf - --to-stdout 'erd' > "$BIN_TARGET/erd"
 
-wget "$LNAV_URL" -O lnav.zip && unzip -j lnav.zip "*/lnav" && mv "$WORK_DIR/lnav" "$TARGET_DIR/.local/bin/lnav" && rm lnav.zip
+wget "$LNAV_URL" -O - | tee \
+  >(busybox unzip -p - '*/lnav' > "$BIN_TARGET/lnav") \
+  >(busybox unzip -p - '*/lnav.1' > "$MAN_TARGET/lnav.1") \
+  >/dev/null
 
-
-mkdir -p "$WORK_DIR/rg"
-wget "$RG_URL" -O - | tar -xzvf - --strip-components=1 -C "$WORK_DIR/rg"
-mv "$WORK_DIR/rg/rg" "$TARGET_DIR/.local/bin/rg"
-mv "$WORK_DIR/rg/doc/rg.1" "$TARGET_DIR/.local/bin/man/man1/rg.1"
-mv "$WORK_DIR/rg/complete/rg.bash" "$TARGET_DIR/.local/share/bash-completion/completions/rg"
-rm -r "$WORK_DIR/rg"
+wget "$RG_URL" -O - | tee \
+  >(tar -xzvf - --to-stdout --wildcards '*/rg' > "$BIN_TARGET/rg") \
+  >(tar -xzvf - --to-stdout --wildcards '*/doc/rg.1' > "$MAN_TARGET/rg.1") \
+  >(tar -xzvf - --to-stdout --wildcards '*/complete/rg.bash' > "$COMP_TARGET/rg") \
+  >/dev/null
 
 
-mkdir -p "$WORK_DIR/fzf" 
-wget "$FZF_URL" -O - | tar -xzvf - -C "$WORK_DIR/fzf"
-mv "$WORK_DIR/fzf/fzf" "$TARGET_DIR/.local/bin/fzf"
-wget "$FZF_COMPLETION_URL" -O "$TARGET_DIR/.local/share/bash-completion/completions/fzf"
+wget "$FZF_URL" -O - | tar -xzvf - --to-stdout 'fzf' > "$BIN_TARGET/fzf"
+wget "$FZF_COMPLETION_URL" -O "$COMP_TARGET/fzf"
 wget "$FZF_KEYBINDS_URL" -O "$TARGET_DIR/.fzf-keybindings.bash"
-wget "$FZF_MANPAGE_URL" -O "$TARGET_DIR/.local/bin/man/man1/fzf.1"
-rm -r "$WORK_DIR/fzf"
+wget "$FZF_MANPAGE_URL" -O "$MAN_TARGET/fzf.1"
 
+wget "$STARSHIP_URL" -O - | tar -xzvf - --to-stdout 'starship' > "$BIN_TARGET/starship"
 
-wget "$STARSHIP_URL" -O - | tar -xzvf - && mv starship "$TARGET_DIR/.local/bin/starship"
+mkdir -p "$TARGET_DIR/.local/share/nvim-dist"
+wget "$NVIM_URL" -O - | tar -xzvf - --strip-components=1 -C "$TARGET_DIR/.local/share/nvim-dist"
+(cd "$TARGET_DIR/.local/bin/"; ln -s "../share/nvim-dist/bin/nvim" nvim)
 
-wget "$NVIM_URL" -O - | tar -xzvf - && mv nvim-linux-x86_64 "$TARGET_DIR/.local/share/"
-cd "$TARGET_DIR/.local/bin/"
-ln -s "../share/nvim-linux-x86_64/bin/nvim" nvim
-cd "$WORK_DIR"
+wget "$STYLUA_URL" -O - | busybox unzip -p - 'stylua' > "$BIN_TARGET/stylua"
 
-wget "$STYLUA_URL" -O "$WORK_DIR/stylua.zip" && unzip "$WORK_DIR/stylua.zip" && mv stylua "$TARGET_DIR/.local/bin/stylua" && rm "$WORK_DIR/stylua.zip"
-
-wget "$TMUX_URL" -O - | gunzip > "$TARGET_DIR/.local/bin/tmux"
+wget "$TMUX_URL" -O - | gunzip > "$BIN_TARGET/tmux"
 
 ## don't include spell files - difficult to meet GPL source distribution requirements.
 # mkdir -p "$TARGET_DIR/.config/nvim/spell"
@@ -95,3 +83,5 @@ do
     echo chmod +x "$file"
     chmod +x "$file"
 done
+
+"$BIN_TARGET/erd" --completions bash > "$COMP_TARGET/erd"

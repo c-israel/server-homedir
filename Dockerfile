@@ -12,7 +12,8 @@ RUN apt-get update && apt-get install -y \
     python3 \
     python3-venv \
     zip \
-    bash && \
+    bash \
+    busybox && \
     rm -rf /var/lib/apt/lists/*
 
 COPY fetch_tools ./fetch_tools
