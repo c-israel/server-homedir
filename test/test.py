@@ -4,6 +4,8 @@ import zipfile
 import pexpect
 import pytest
 import os
+import subprocess
+
 from pathlib import Path
 
 USER_HOME = "/home/tester"
@@ -43,26 +45,42 @@ def bash_session():
 
 # --- Test Cases ---
 
+
 def test_tool_versions(bash_session):
     """Test that all basic tools are installed and executable."""
-    tools_to_check = [
-        "bat", "jq", "fzf", "rg", "curl", "lnav",
-        "erd", "delta", "lsd", "stylua", "nvim", "starship"
-    ]
-    tools_other_version_arg = ["tmux"]
-    for tool in tools_to_check:
-        bash_session.sendline(f'{tool} --version')
-        bash_session.expect(PROMPT_PATTERN, timeout=2)
-        output = bash_session.before
-        assert "Error" not in output, f"Error found in output of '{tool} --version':\n{output}"
-        assert "command not found" not in output, f"'{tool}' not found."
 
-    for tool in tools_other_version_arg:
-        bash_session.sendline(f'{tool} -V')
-        bash_session.expect(PROMPT_PATTERN, timeout=2)
-        output = bash_session.before
-        assert "Error" not in output, f"Error found in output of '{tool} -V':\n{output}"
-        assert "command not found" not in output, f"'{tool}' not found."
+    def _run_version_check(tool, version_argument):
+        """Run the version check for a single tool and handle exceptions."""
+        try:
+            proc = subprocess.run(
+                [tool, version_argument],
+                capture_output=True,
+                text=True,
+                timeout=5
+            )
+            assert proc.returncode == 0, (
+                f"'{tool} {version_argument}' failed with exit code {proc.returncode}.\n"
+                f"Output:\n{proc.stdout}\n{proc.stderr}"
+            )
+        except subprocess.TimeoutExpired as e:
+            pytest.fail(
+                f"'{tool} {version_argument}' timed out after 5 seconds.\n"
+                f"Output:\n{e.stdout}\n{e.stderr}"
+            )
+        except FileNotFoundError:
+            pytest.fail(f"'{tool}' not found.")
+
+    TOOLS_TO_CHECK = {
+        "--version": [
+            "bat", "jq", "fzf", "rg", "curl", "lnav",
+            "erd", "delta", "lsd", "stylua", "nvim", "starship"
+        ],
+        "-V": ["tmux"],
+    }
+
+    for version_arg, tools in TOOLS_TO_CHECK.items():
+        for tool in tools:
+            _run_version_check(tool, version_arg)
 
 def test_files_present(bash_session):
     """
@@ -115,7 +133,7 @@ def test_neovim_startup_no_errors(bash_session):
     bash_session.expect(r"\{\}$", timeout=5)
 
     bash_session.sendline('rm test/test.lua; rmdir test')
-    bash_session.expect(PROMPT_PATTERN, timeout=2)
+    bash_session.expect(PROMPT_PATTERN, timeout=5)
 
 
 def test_third_party_licenses():

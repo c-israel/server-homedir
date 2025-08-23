@@ -1,6 +1,7 @@
 #!/bin/bash
 set -e
 
+TARGET_ARCH="${TARGET_ARCH:-amd64}"
 MAIN_IMAGE_TAG="server-homedir-builder"
 ARTIFACT_PATH_IN_IMAGE="/home/ubuntu/server_homedir.zip"
 LOCAL_ARTIFACT_NAME="server_homedir.zip"
@@ -35,8 +36,8 @@ ARTIFACT_CONTAINER_ID=$(docker create ${MAIN_IMAGE_TAG})
 docker cp "${ARTIFACT_CONTAINER_ID}:${ARTIFACT_PATH_IN_IMAGE}" ./"${LOCAL_ARTIFACT_NAME}"
 
 
-echo "--- Building test image: ${TEST_IMAGE_TAG} ---"
-docker build -t ${TEST_IMAGE_TAG} -f ${TEST_DIR}/Dockerfile ${TEST_DIR}
+echo "--- Building test image: ${TEST_IMAGE_TAG} on ${TARGET_ARCH} ---"
+docker build --platform "${TARGET_ARCH}" -t ${TEST_IMAGE_TAG} -f ${TEST_DIR}/Dockerfile ${TEST_DIR}
 
 
 echo "--- Running tests and generating report ---"
@@ -46,6 +47,7 @@ TEST_COMMAND="mkdir -p ${REPORT_DIR_IN_CONTAINER} && \
               python3 -m pytest -v tests/test.py --junitxml=${REPORT_DIR_IN_CONTAINER}/${LOCAL_REPORT_NAME}"
 
 TEST_CONTAINER_ID=$(docker create \
+                   --platform "${TARGET_ARCH}" \
                    -v "$(pwd)/${TEST_DIR}:/home/tester/tests" \
                    -v "$(pwd)/${LOCAL_ARTIFACT_NAME}:/home/tester/${LOCAL_ARTIFACT_NAME}" \
                    --user=tester \

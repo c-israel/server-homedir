@@ -1,4 +1,4 @@
-FROM ubuntu:22.04
+FROM ubuntu:latest
 
 ENV DEBIAN_FRONTEND=noninteractive
 
@@ -15,5 +15,5 @@ USER tester
 WORKDIR /home/tester
 
 COPY --chown=tester:tester requirements.txt .
-RUN python3 -m pip install --user -r requirements.txt
+RUN python3 -m pip install --break-system-packages --user -r requirements.txt
 ENV PATH="/home/tester/.local/bin:${PATH}"

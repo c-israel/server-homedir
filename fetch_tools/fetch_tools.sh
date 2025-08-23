@@ -2,8 +2,8 @@
 
 set -euo pipefail
 
-# shellcheck source=./urls-env.sh
-. ./urls-env"${ARCH:=}".sh
+# shellcheck source=./urls-env-amd64.sh
+. ./urls-env-"${ARCH}".sh
 
 [ -d ./target ] && rm -r ./target
 TARGET_DIR=$(realpath ./target)
