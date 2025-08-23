@@ -83,5 +83,3 @@ do
     echo chmod +x "$file"
     chmod +x "$file"
 done
-
-"$BIN_TARGET/erd" --completions bash > "$COMP_TARGET/erd"

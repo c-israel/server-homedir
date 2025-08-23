@@ -17,16 +17,17 @@ RUN apt-get update && apt-get install -y \
     rm -rf /var/lib/apt/lists/*
 
 COPY fetch_tools ./fetch_tools
-COPY dotfiles ./dotfiles
 
 RUN chmod +x ./fetch_tools/fetch_tools.sh && cd fetch_tools && ./fetch_tools.sh
 
 WORKDIR /app
 
+COPY dotfiles ./dotfiles
 RUN cp -r ./dotfiles/. /root && cp -r ./fetch_tools/target/. /root
 
 ENV PATH="/root/.local/bin:${PATH}"
 
+RUN bash -l -c erd --completions bash > /root/.local/share/bash-completion/completions/erd
 RUN bash -l -c "nvim --headless -c MasonUpdate -c 'MasonInstall lua-language-server' -c 'TSInstallSync bash python' -c q"
 RUN bash -l -c "nvim --headless -c 'MasonInstall shellcheck' -c q"
 
