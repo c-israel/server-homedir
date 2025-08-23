@@ -11,22 +11,33 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        arch: [amd64, arm64]
 
     steps:
       - name: Check out repository
         uses: actions/checkout@v4
 
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v3
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
       - name: Build Docker image
-        run: docker build --tag server-homedir-builder .
+        run: docker build --build-arg TARGETARCH=${{ matrix.arch }} --tag server-homedir-builder .
 
       - name: Run tests
         run: bash ./run_tests.sh
+        env:
+          TARGET_ARCH: ${{ matrix.arch }}
 
       - name: Publish Test Results
         uses: EnricoMi/publish-unit-test-result-action@v2
         if: always()
         with:
           files: test_report.xml
-          check_name: "Test Results"
-          comment_title: "Test Results"
+          check_name: "Test Results (${{ matrix.arch }})"
+          comment_title: "Test Results (${{ matrix.arch }})"
           fail_on: "test failures"

@@ -6,60 +6,40 @@ on:
       - 'v*.*.*'
 
 jobs:
-  build-and-release:
+  create-release:
     runs-on: ubuntu-latest
-
-    # required to create a release and upload assets.
     permissions:
       contents: write
+    outputs:
+      upload_url: ${{ steps.create_release.outputs.upload_url }}
 
     steps:
       - name: Check out repository
         uses: actions/checkout@v4
 
-      - name: Build Docker image
-        run: docker build --tag server-homedir-builder:${{ github.sha }} .
-
-      - name: Extract artifact from Docker image
-        run: |
-          docker create --name extractor server-homedir-builder:${{ github.sha }}
-          docker cp extractor:/home/ubuntu/server_homedir.zip ./server_homedir.zip
-          docker rm extractor
-
       - name: Create GPL Sources Archive
         run: |
           mkdir gpl-sources
-          
+
           git clone https://github.com/koalaman/shellcheck.git gpl-sources/shellcheck
           git clone https://github.com/mfussenegger/nvim-dap.git gpl-sources/nvim-dap
           git clone https://github.com/mfussenegger/nvim-lint.git gpl-sources/nvim-lint
-          
-          zip -r 3rdparty-gpl-sources.zip gpl-sources
 
+          zip -r 3rdparty-gpl-sources.zip gpl-sources
 
       - name: Create GitHub Release
         id: create_release
         uses: actions/create-release@v1
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # This token is provided by Actions
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           tag_name: ${{ github.ref_name }}
           release_name: Release ${{ github.ref_name }}
           body: |
             Release of version ${{ github.ref_name }}.
-            The server_homedir.zip artifact contains the pre-packaged dotfiles and tools.
+            The server_homedir_<arch>.zip artifacts contain the pre-packaged dotfiles and tools for each architecture.
           draft: false
           prerelease: false
-
-      - name: Upload Release Asset
-        uses: actions/upload-release-asset@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./server_homedir.zip
-          asset_name: server_homedir.zip
-          asset_content_type: application/zip
 
       - name: Upload GPL Sources Asset
         uses: actions/upload-release-asset@v1
@@ -69,4 +49,43 @@ jobs:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
           asset_path: ./3rdparty-gpl-sources.zip
           asset_name: 3rdparty-gpl-sources.zip
+          asset_content_type: application/zip
+
+  build-and-upload:
+    needs: create-release
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        arch: [amd64, arm64]
+
+    permissions:
+      contents: write
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v3
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Build Docker image
+        run: docker build --build-arg TARGETARCH=${{ matrix.arch }} --tag server-homedir-builder:${{ github.sha }}-${{ matrix.arch }} .
+
+      - name: Extract artifact from Docker image
+        run: |
+          docker create --name extractor server-homedir-builder:${{ github.sha }}-${{ matrix.arch }}
+          docker cp extractor:/home/ubuntu/server_homedir.zip ./server_homedir_${{ matrix.arch }}.zip
+          docker rm extractor
+
+      - name: Upload Release Asset
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ needs.create-release.outputs.upload_url }}
+          asset_path: ./server_homedir_${{ matrix.arch }}.zip
+          asset_name: server_homedir_${{ matrix.arch }}.zip
           asset_content_type: application/zip
