@@ -48,20 +48,31 @@ GITHUB_LICENSES["stylua"]="https://github.com/JohnnyMorganz/StyLua/blob/v0.20.0/
 # Neovim Plugins
 GITHUB_LICENSES["nvim-nio"]="https://github.com/nvim-neotest/nvim-nio/blob/master/LICENCE.md"
 GITHUB_LICENSES["friendly-snippets"]="https://github.com/rafamadriz/friendly-snippets/blob/main/LICENSE"
+GITHUB_LICENSES["lua-console.nvim"]="https://github.com/YaroSpace/lua-console.nvim/blob/main/LICENSE"
 GITHUB_LICENSES["cmp-cmdline"]="https://github.com/hrsh7th/cmp-cmdline/blob/main/LICENSE"
+GITHUB_LICENSES["blame.nvim"]="https://github.com/FabijanZulj/blame.nvim/blob/main/LICENSE"
+GITHUB_LICENSES["plenary.nvim"]="https://github.com/nvim-lua/plenary.nvim/blob/master/LICENSE"
+GITHUB_LICENSES["lazydev"]="https://github.com/folke/lazydev.nvim/blob/main/LICENSE"
 GITHUB_LICENSES["cmp_luasnip"]="https://github.com/saadparwaiz1/cmp_luasnip/blob/master/LICENSE"
 GITHUB_LICENSES["formatter-nvim"]="https://github.com/mhartington/formatter.nvim/blob/master/LICENSE"
 GITHUB_LICENSES["cmp-path"]="https://github.com/hrsh7th/cmp-path/blob/main/LICENSE"
 GITHUB_LICENSES["lspkind-nvim"]="https://github.com/onsails/lspkind.nvim/blob/master/LICENSE"
+GITHUB_LICENSES["gitsigns"]="https://github.com/lewis6991/gitsigns.nvim/blob/main/LICENSE"
 GITHUB_LICENSES["lazy-nvim"]="https://github.com/folke/lazy.nvim/blob/main/LICENSE"
+GITHUB_LICENSES["FixCursorHold.nvim"]="https://github.com/antoinemadec/FixCursorHold.nvim/blob/master/LICENSE"
+GITHUB_LICENSES["neogit"]="https://github.com/NeogitOrg/neogit/blob/master/LICENSE"
 GITHUB_LICENSES["mason-lspconfig-nvim"]="https://github.com/mason-org/mason-lspconfig.nvim/blob/main/LICENSE"
 GITHUB_LICENSES["lualine-nvim"]="https://github.com/nvim-lualine/lualine.nvim/blob/master/LICENSE"
 GITHUB_LICENSES["nvim-web-devicons"]="https://github.com/nvim-tree/nvim-web-devicons/blob/master/LICENSE"
 GITHUB_LICENSES["mason-nvim"]="https://github.com/mason-org/mason.nvim/blob/main/LICENSE"
+GITHUB_LICENSES["legendary"]="https://github.com/mrjones2014/legendary.nvim/blob/master/LICENSE"
+#GITHUB_LICENSES["vim-sleuth"]="https://github.com/tpope/vim-sleuth/blob/master/LICENSE"
 GITHUB_LICENSES["snacks-nvim"]="https://github.com/folke/snacks.nvim/blob/main/LICENSE"
 GITHUB_LICENSES["nvim-treesitter"]="https://github.com/nvim-treesitter/nvim-treesitter/blob/master/LICENSE"
+GITHUB_LICENSES["nvim-lightbulb"]="https://github.com/kosayoda/nvim-lightbulb/blob/master/LICENSE"
 GITHUB_LICENSES["which-key-nvim"]="https://github.com/folke/which-key.nvim/blob/main/LICENSE"
 GITHUB_LICENSES["nvim-dap"]="https://github.com/mfussenegger/nvim-dap/blob/master/LICENSE.txt"
+GITHUB_LICENSES["diffview.nvim"]="https://github.com/sindrets/diffview.nvim/blob/main/LICENSE"
 GITHUB_LICENSES["cmp-buffer"]="https://github.com/hrsh7th/cmp-buffer/blob/main/LICENSE"
 GITHUB_LICENSES["nvim-lspconfig"]="https://github.com/neovim/nvim-lspconfig/blob/master/LICENSE.md"
 GITHUB_LICENSES["luasnip"]="https://github.com/L3MON4D3/LuaSnip/blob/master/LICENSE"
@@ -70,14 +81,18 @@ GITHUB_LICENSES["nvim-dap-ui"]="https://github.com/rcarriga/nvim-dap-ui/blob/mas
 GITHUB_LICENSES["cmp-nvim-lsp"]="https://github.com/hrsh7th/cmp-nvim-lsp/blob/main/LICENSE"
 GITHUB_LICENSES["vim-rhubarb"]="https://github.com/tpope/vim-rhubarb/blob/master/LICENSE"
 GITHUB_LICENSES["nvim-cmp"]="https://github.com/hrsh7th/nvim-cmp/blob/main/LICENSE"
-GITHUB_LICENSES["legendary"]="https://github.com/mrjones2014/legendary.nvim/blob/master/LICENSE"
+GITHUB_LICENSES["neotest"]="https://github.com/nvim-neotest/neotest/blob/master/LICENCE.md"
 GITHUB_LICENSES["jsregexp"]="https://github.com/kmarius/jsregexp/blob/master/LICENSE"
 GITHUB_LICENSES["lua-language-server"]="https://github.com/LuaLS/lua-language-server/blob/master/LICENSE"
 GITHUB_LICENSES["shellcheck"]="https://github.com/koalaman/shellcheck/blob/master/LICENSE"
 GITHUB_LICENSES["tmux"]="https://github.com/tmux/tmux/blob/3.5a/COPYING"
 GITHUB_LICENSES["build-static-tmux"]="https://github.com/mjakob-gh/build-static-tmux/blob/v3.5d/LICENSE"
 #GITHUB_LICENSES["vim-fugitive"]="https://github.com/tpope/vim-fugitive/blob/master/LICENSE"
-#GITHUB_LICENSES["vim-sleuth"]="https://github.com/tpope/vim-sleuth/blob/master/LICENSE"
+
+# not actually distributing those in the artifact, but include the licenses anyways just to be sure
+GITHUB_LICENSES["basedpyright"]="https://github.com/DetachHead/basedpyright/blob/main/LICENSE.txt"
+GITHUB_LICENSES["nvim-dap-python"]="https://github.com/mfussenegger/nvim-dap-python/blob/master/LICENSE.txt"
+GITHUB_LICENSES["neotest-python"]="https://github.com/nvim-neotest/neotest-python/blob/master/LICENCE.md"
 
 # --- Configuration: Canonical Licenses ---
 # For licenses like the Vim License, which are referenced but not included.
@@ -87,7 +102,7 @@ CANONICAL_LICENSE_URLS["vim-license"]="https://raw.githubusercontent.com/vim/vim
 
 declare -A COMPONENTS_BY_CANONICAL_LICENSE
 # Space-separated list of components using the Vim License.
-COMPONENTS_BY_CANONICAL_LICENSE["vim-license"]="vim-fugitive vim-sleuth"
+COMPONENTS_BY_CANONICAL_LICENSE["vim-license"]="vim-sleuth"
 
 # --- Main Script Logic ---
 

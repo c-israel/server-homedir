@@ -146,11 +146,13 @@ def test_third_party_licenses():
         "Apache-2.0": [
             "cmp_luasnip.LICENSE", "luasnip.LICENSE", "neovim.LICENSE.txt", "snacks-nvim.LICENSE",
             "lazy-nvim.LICENSE", "mason-lspconfig-nvim.LICENSE", "nvim-lspconfig.LICENSE.md", "which-key-nvim.LICENSE",
-            "lsd.LICENSE", "mason-nvim.LICENSE", "nvim-treesitter.LICENSE"
+            "lsd.LICENSE", "mason-nvim.LICENSE", "nvim-treesitter.LICENSE", "lua-console.nvim.LICENSE",
+            "lazydev.LICENSE"
         ],
         "BSD2Clause": ["lnav.LICENSE"],
         "CCBY3": ["jq.COPYING"],
-        "GPLv3": ["nvim-dap.LICENSE.txt", "nvim-lint.LICENSE.txt", "shellcheck.LICENSE"],
+        "GPLv3": ["nvim-dap.LICENSE.txt", "nvim-lint.LICENSE.txt", "shellcheck.LICENSE", "nvim-dap-python.LICENSE.txt"],
+        "GPLv3orHigher": ["diffview.nvim.LICENSE"],
         "ISC": ["starship.LICENSE", "tmux.COPYING"],
         "MIT": [
             "bat.LICENSE-MIT", "delta.LICENSE", "jsregexp.LICENSE", "nvim-cmp.LICENSE",
@@ -158,11 +160,14 @@ def test_third_party_licenses():
             "cmp-buffer.LICENSE", "formatter-nvim.LICENSE", "legendary.LICENSE", "nvim-nio.LICENCE.md",
             "cmp-cmdline.LICENSE", "friendly-snippets.LICENSE", "lspkind-nvim.LICENSE", "nvim-web-devicons.LICENSE",
             "cmp-nvim-lsp.LICENSE", "fzf.LICENSE", "lua-language-server.LICENSE", "static-curl_mit.LICENSE",
-            "cmp-path.LICENSE", "jq.COPYING", "lualine-nvim.LICENSE", "vim-rhubarb.LICENSE"
+            "cmp-path.LICENSE", "jq.COPYING", "lualine-nvim.LICENSE", "vim-rhubarb.LICENSE", "blame.nvim.LICENSE",
+            "plenary.nvim.LICENSE", "gitsigns.LICENSE", "FixCursorHold.nvim.LICENSE",
+            "neogit.LICENSE", "nvim-lightbulb.LICENSE", "neotest.LICENCE.md", "basedpyright.LICENSE.txt",
+            "neotest-python.LICENCE.md"
         ],
         "MPL2": ["stylua.LICENSE.md"],
         "Unlicense": ["ripgrep.UNLICENSE"],
-        "Vim": ["_canonical.vim-license.txt", "neovim.LICENSE.txt", "vim-fugitive.LICENSE.txt", "vim-sleuth.LICENSE.txt"],
+        "Vim": ["_canonical.vim-license.txt", "neovim.LICENSE.txt", "vim-sleuth.LICENSE.txt"],
         "curl": ["static-curl_curl.COPYING"]
     }
 
@@ -172,6 +177,7 @@ def test_third_party_licenses():
         "BSD2Clause": ["Redistribution and use"],
         "CCBY3": ["CC BY 3.0"],
         "GPLv3": ["GNU GENERAL PUBLIC LICENSE", "Version 3, 29 June 2007"],
+        "GPLv3orHigher": ["GNU General Public License", "version 3", "any later version"],
         "ISC": ["Permission to use, copy, modify,", "DISCLAIMS ALL WARRANTIES"],
         "MIT": ["Permission is hereby granted, free of charge, to any person obtaining"],
         "MPL2": ["Mozilla Public License"],

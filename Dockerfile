@@ -58,7 +58,7 @@ FROM --platform=amd64 ubuntu:latest
 ENV DEBIAN_FRONTEND=noninteractive
 
 # Install only the necessary RUNTIME dependencies.
-RUN apt-get update && apt-get install -y python3 git bash zip
+RUN apt-get update && apt-get install -y python3 python3-venv git bash zip
     #rm -rf /var/lib/apt/lists/*
 
 USER ubuntu
