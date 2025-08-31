@@ -54,7 +54,7 @@ COPY setup.sh ./setup.sh
 RUN bash ./setup.sh
 
 
-FROM --platform=amd64 ubuntu:latest
+FROM ubuntu:latest
 ENV DEBIAN_FRONTEND=noninteractive
 
 # Install only the necessary RUNTIME dependencies.
