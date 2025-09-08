@@ -10,6 +10,7 @@ bash -l -c "erd --completions bash > /root/.local/share/bash-completion/completi
 # Install neovim packages and language servers
 bash -l -c "nvim --headless -c MasonUpdate -c 'MasonInstall lua-language-server' -c 'TSInstallSync bash python' -c q"
 bash -l -c "nvim --headless -c 'MasonInstall shellcheck' -c q"
+bash -l -c "nvim --headless -c 'lua require(\"kulala\")' -c q"
 
 # Fix absolute path in lua language server
 sed -i 's/\/root\/.local/~\/.local/g' /root/.local/share/nvim/mason/packages/lua-language-server/lua-language-server

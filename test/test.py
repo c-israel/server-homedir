@@ -161,9 +161,11 @@ def test_third_party_licenses():
             "cmp-cmdline.LICENSE", "friendly-snippets.LICENSE", "lspkind-nvim.LICENSE", "nvim-web-devicons.LICENSE",
             "cmp-nvim-lsp.LICENSE", "fzf.LICENSE", "lua-language-server.LICENSE", "static-curl_mit.LICENSE",
             "cmp-path.LICENSE", "jq.COPYING", "lualine-nvim.LICENSE", "vim-rhubarb.LICENSE", "blame.nvim.LICENSE",
-            "plenary.nvim.LICENSE", "gitsigns.LICENSE", "FixCursorHold.nvim.LICENSE",
-            "neogit.LICENSE", "nvim-lightbulb.LICENSE", "neotest.LICENCE.md", "basedpyright.LICENSE.txt",
-            "neotest-python.LICENCE.md"
+            "plenary.nvim.LICENSE", "gitsigns.LICENSE", "FixCursorHold.nvim.LICENSE", "neogit.LICENSE",
+            "nvim-lightbulb.LICENSE", "neotest.LICENCE.md", "tiny-glimmer.nvim.LICENSE", "kulala.nvim.LICENSE",
+            "basedpyright.LICENSE.txt", "neotest-python.LICENCE.md", "opencode.nvim.LICENSE", "copilot.lua.LICENSE",
+            "copilot-cmp.LICENSE", "copilot-lualine.LICENSE", "codecompanion.nvim.LICENSE",
+            "render-markdown.nvim.LICENSE", "mcphub.nvim.LICENSE.md"
         ],
         "MPL2": ["stylua.LICENSE.md"],
         "Unlicense": ["ripgrep.UNLICENSE"],

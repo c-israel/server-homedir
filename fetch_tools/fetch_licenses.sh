@@ -82,6 +82,8 @@ GITHUB_LICENSES["cmp-nvim-lsp"]="https://github.com/hrsh7th/cmp-nvim-lsp/blob/ma
 GITHUB_LICENSES["vim-rhubarb"]="https://github.com/tpope/vim-rhubarb/blob/master/LICENSE"
 GITHUB_LICENSES["nvim-cmp"]="https://github.com/hrsh7th/nvim-cmp/blob/main/LICENSE"
 GITHUB_LICENSES["neotest"]="https://github.com/nvim-neotest/neotest/blob/master/LICENCE.md"
+GITHUB_LICENSES["tiny-glimmer.nvim"]="https://github.com/rachartier/tiny-glimmer.nvim/blob/main/LICENSE"
+GITHUB_LICENSES["kulala.nvim"]="https://github.com/mistweaverco/kulala.nvim/blob/main/LICENSE"
 GITHUB_LICENSES["jsregexp"]="https://github.com/kmarius/jsregexp/blob/master/LICENSE"
 GITHUB_LICENSES["lua-language-server"]="https://github.com/LuaLS/lua-language-server/blob/master/LICENSE"
 GITHUB_LICENSES["shellcheck"]="https://github.com/koalaman/shellcheck/blob/master/LICENSE"
@@ -93,6 +95,13 @@ GITHUB_LICENSES["build-static-tmux"]="https://github.com/mjakob-gh/build-static-
 GITHUB_LICENSES["basedpyright"]="https://github.com/DetachHead/basedpyright/blob/main/LICENSE.txt"
 GITHUB_LICENSES["nvim-dap-python"]="https://github.com/mfussenegger/nvim-dap-python/blob/master/LICENSE.txt"
 GITHUB_LICENSES["neotest-python"]="https://github.com/nvim-neotest/neotest-python/blob/master/LICENCE.md"
+GITHUB_LICENSES["opencode.nvim"]="https://github.com/NickvanDyke/opencode.nvim/blob/main/LICENSE"
+GITHUB_LICENSES["copilot.lua"]="https://github.com/zbirenbaum/copilot.lua/blob/master/LICENSE"
+GITHUB_LICENSES["copilot-cmp"]="https://github.com/zbirenbaum/copilot-cmp/blob/master/LICENSE"
+GITHUB_LICENSES["copilot-lualine"]="https://github.com/AndreM222/copilot-lualine/blob/main/LICENSE"
+GITHUB_LICENSES["codecompanion.nvim"]="https://github.com/olimorris/codecompanion.nvim/blob/main/LICENSE"
+GITHUB_LICENSES["render-markdown.nvim"]="https://github.com/MeanderingProgrammer/render-markdown.nvim/blob/main/LICENSE"
+GITHUB_LICENSES["mcphub.nvim"]="https://github.com/ravitemer/mcphub.nvim/blob/main/LICENSE.md"
 
 # --- Configuration: Canonical Licenses ---
 # For licenses like the Vim License, which are referenced but not included.

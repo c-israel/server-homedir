@@ -4,7 +4,7 @@ builds a .tgz file with dotfiles and binaries of useful tools to download and un
 server - providing a common work environment
 
 # LICENSE
-This repository itself, meaning the code producing the artifact,  is provided under the Unlicense. See LICENSE.
+This repository itself, meaning the code producing the artifact, is provided under the Unlicense. See LICENSE.
 
 The artifact produced by this repository is an aggregate that combines artifacts from projects with various open source licenses:
 * [kickstart.nvim](https://github.com/nvim-lua/kickstart.nvim) 
@@ -145,6 +145,10 @@ Neovim plugins are included as well:
   [MIT License](https://github.com/hrsh7th/nvim-cmp/blob/main/LICENSE)
 * [nvim-neotest/neotest](https://github.com/nvim-neotest/neotest/)
   [MIT License](https://github.com/nvim-neotest/neotest/blob/master/LICENCE.md)
+* [rachartier/tiny-glimmer.nvim](https://github.com/rachartier/tiny-glimmer.nvim/)
+  [MIT License](https://github.com/rachartier/tiny-glimmer.nvim/blob/main/LICENSE)
+* [mistweaverco/kulala.nvim](https://github.com/mistweaverco/kulala.nvim)
+  [MIT License](https://github.com/mistweaverco/kulala.nvim/blob/main/LICENSE)
 * [lua-language-server](https://github.com/LuaLS/lua-language-server)
   [MIT License](https://github.com/LuaLS/lua-language-server/blob/master/LICENSE)  
 * [shellcheck](https://github.com/koalaman/shellcheck)
@@ -159,3 +163,24 @@ Nevertheless, here are the links to the relevant repositories and licenses:
   [GNU GPL v3.0](https://github.com/mfussenegger/nvim-dap-python/blob/master/LICENSE.txt)
 * [nvim-neotest/neotest-python](https://github.com/nvim-neotest/neotest-python)
   [MIT License](https://github.com/nvim-neotest/neotest-python/blob/master/LICENCE.md)
+
+Similarly, by running NeoVim with the environment variable `NVIM_AI` set to `1`, AI plugins will be installed and set up.
+That is, `NickvanDyke/opencode.nvim` (only if `opencode` is on the PATH), `zbirenbaum/copilot.lua` 
+and `zbirenbaum/copilot-cmp`, `AndreM222/copilot-lualine`, `olimorris/codecompanion.nvim` and its dependencies 
+`MeanderingProgrammer/render-markdown.nvim` and `ravitemer/mcphub.nvim`.
+Here are the license links to those:
+
+* [NickvanDyke/opencode.nvim](https://github.com/NickvanDyke/opencode.nvim)
+  [MIT License](https://github.com/NickvanDyke/opencode.nvim/blob/main/LICENSE)
+* [zbirenbaum/copilot.lua](https://github.com/zbirenbaum/copilot.lua)
+  [MIT License](https://github.com/zbirenbaum/copilot.lua/blob/master/LICENSE)
+* [zbirenbaum/copilot-cmp](https://github.com/zbirenbaum/copilot-cmp)
+  [MIT License](https://github.com/zbirenbaum/copilot-cmp/blob/master/LICENSE)
+* [AndreM222/copilot-lualine](https://github.com/AndreM222/copilot-lualine)
+  [MIT License](https://github.com/AndreM222/copilot-lualine/blob/main/LICENSE)
+* [olimorris/codecompanion.nvim](https://github.com/olimorris/codecompanion.nvim)
+  [MIT License](https://github.com/olimorris/codecompanion.nvim/blob/main/LICENSE)
+* [MeanderingProgrammer/render-markdown.nvim](https://github.com/MeanderingProgrammer/render-markdown.nvim)
+  [MIT License](https://github.com/MeanderingProgrammer/render-markdown.nvim/blob/main/LICENSE)
+* [ravitemer/mcphub.nvim](https://github.com/ravitemer/mcphub.nvim)
+  [MIT License](https://github.com/ravitemer/mcphub.nvim/blob/main/LICENSE.md)

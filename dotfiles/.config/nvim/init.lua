@@ -10,6 +10,7 @@ vim.opt.smartindent = true -- Default: false
 vim.opt.tabstop = 2 -- Default: 8
 vim.opt.shiftwidth = 2 -- Default: 8
 vim.opt.softtabstop = 2 -- Default: 0
+vim.opt.expandtab = true     -- indentation uses spaces
 
 vim.opt.backup = false -- Disable backup
 vim.opt.undofile = true -- Enable persistent undo
@@ -99,6 +100,93 @@ require("lazy").setup({
       })
     end
   },
+  { "rachartier/tiny-glimmer.nvim", -- animations
+      event = "VeryLazy",
+      priority = 10, -- Needs to be a really low priority, to catch others plugins keybindings.
+      opts = {
+        overwrite = {
+          yank = { enabled = true },
+          search = { enabled = true },
+          paste = { enabled = true },
+          undo = { enabled = true },
+          redo = { enabled = true },
+        }
+      },
+  },
+  { "mistweaverco/kulala.nvim", -- REST client
+     keys = {
+       { "<leader>Rs", desc = "Kulala: Send request" },
+       { "<leader>Ra", desc = "Kulala: Send all requests" },
+       { "<leader>Rb", desc = "Kulala: Open scratchpad" },
+     },
+     ft = {"http", "rest"},
+     opts = {
+       global_keymaps = true,
+       global_keymaps_prefix = "<leader>R",
+       kulala_keymaps_prefix = "",
+     },
+  },
+  {"zbirenbaum/copilot.lua",
+    cond = vim.env.NVIM_AI == "1",
+    cmd = "Copilot",
+    event = "InsertEnter",
+    config = function()
+      require("copilot").setup({
+        suggestion = { enabled = false },
+        panel = { enabled = false },
+        server = { type = "binary", },
+      })
+    end,
+  },
+  {"zbirenbaum/copilot-cmp",
+    cond = vim.env.NVIM_AI == "1",
+    config = function ()
+      require("copilot_cmp").setup()
+    end
+  },
+  { 'AndreM222/copilot-lualine',
+    cond = vim.env.NVIM_AI == "1",
+  },
+  {"MeanderingProgrammer/render-markdown.nvim",
+    cond = vim.env.NVIM_AI == "1",
+    ft = { "markdown", "codecompanion" }
+  },
+  {"olimorris/codecompanion.nvim",
+    cond = vim.env.NVIM_AI == "1",
+    opts = {},
+    dependencies = {
+      "ravitemer/mcphub.nvim",
+      "nvim-lua/plenary.nvim",
+      "nvim-treesitter/nvim-treesitter",
+    },
+  },
+  { 'NickvanDyke/opencode.nvim',
+    cond = vim.env.NVIM_AI == "1" and vim.fn.executable("opencode") == 1,
+    config = function()
+      -- `opencode.nvim` passes options via a global variable instead of `setup()` for faster startup
+      ---@type opencode.Opts
+      vim.g.opencode_opts = {
+        -- Your configuration, if any — see `lua/opencode/config.lua`
+      }
+
+      -- Required for `opts.auto_reload`
+      vim.opt.autoread = true
+
+      -- Recommended keymaps
+      vim.keymap.set('n', '<leader>ot', function() require('opencode').toggle() end, { desc = 'Toggle opencode' })
+      vim.keymap.set('n', '<leader>oA', function() require('opencode').ask() end, { desc = 'Ask opencode' })
+      vim.keymap.set('n', '<leader>oa', function() require('opencode').ask('@cursor: ') end, { desc = 'Ask opencode about this' })
+      vim.keymap.set('v', '<leader>oa', function() require('opencode').ask('@selection: ') end, { desc = 'Ask opencode about selection' })
+      vim.keymap.set('n', '<leader>on', function() require('opencode').command('session_new') end, { desc = 'New opencode session' })
+      vim.keymap.set('n', '<leader>oy', function() require('opencode').command('messages_copy') end, { desc = 'Copy last opencode response' })
+      vim.keymap.set('n', '<S-C-u>',    function() require('opencode').command('messages_half_page_up') end, { desc = 'Messages half page up' })
+      vim.keymap.set('n', '<S-C-d>',    function() require('opencode').command('messages_half_page_down') end, { desc = 'Messages half page down' })
+      vim.keymap.set({ 'n', 'v' }, '<leader>os', function() require('opencode').select() end, { desc = 'Select opencode prompt' })
+
+      -- Example: keymap for custom prompt
+      vim.keymap.set('n', '<leader>oe', function() require('opencode').prompt('Explain @cursor and its context') end, { desc = 'Explain this code' })
+    end,
+  },
   {
     "sindrets/diffview.nvim",
     keys = {
@@ -154,7 +242,7 @@ require("lazy").setup({
        { "<leader>dr",  function() require('dap').repl.open() end, desc="DAP: Open REPL" },
        { "<leader>dl",  function() require('dap').run_last() end, desc="DAP: Run Last" },
       },
-      config = function() 
+      config = function()
         vim.fn.sign_define('DapBreakpoint', {text='🛑', texthl='', linehl='', numhl=''})
       end,
     },
@@ -410,13 +498,56 @@ require("lazy").setup({
       "hrsh7th/cmp-path",
       "hrsh7th/cmp-cmdline",
       "rafamadriz/friendly-snippets",
+      "zbirenbaum/copilot.lua",
+      "zbirenbaum/copilot-cmp",
     },
     config = function()
       local cmp = require("cmp")
       local luasnip = require("luasnip")
       local lspkind = require("lspkind")
-
       require("luasnip.loaders.from_vscode").lazy_load()
+
+      -- from copilot-cmp install guide
+      vim.api.nvim_set_hl(0, "CmpItemKindCopilot", {fg ="#6CC644"})
+      local has_words_before = function()
+        if vim.api.nvim_buf_get_option(0, "buftype") == "prompt" then return false end
+        local line, col = unpack(vim.api.nvim_win_get_cursor(0))
+        return col ~= 0 and vim.api.nvim_buf_get_text(0, line-1, 0, line-1, col, {})[1]:match("^%s*$") == nil
+      end
+
+      local cmp_sorting = {}
+      if vim.env.NVIM_AI == "1" then
+        cmp_sorting = {
+          priority_weight = 2,
+          comparators = {
+            require("copilot_cmp.comparators").prioritize,
+
+            -- Below is the default comparitor list and order for nvim-cmp
+            cmp.config.compare.offset,
+            -- cmp.config.compare.scopes, --this is commented in nvim-cmp too
+            cmp.config.compare.exact,
+            cmp.config.compare.score,
+            cmp.config.compare.recently_used,
+            cmp.config.compare.locality,
+            cmp.config.compare.kind,
+            cmp.config.compare.sort_text,
+            cmp.config.compare.length,
+            cmp.config.compare.order,
+          }
+        }
+      end
+
+      local cmp_sources = {
+        { name = "lazydev" },
+        { name = "nvim_lsp" },
+        { name = "luasnip" },
+        { name = "buffer" },
+        { name = "path" },
+      }
+      if vim.env.NVIM_AI == "1" then
+        table.insert(cmp_sources, 1, { name = "copilot" })
+        table.insert(cmp_sources, { name = 'codecompanion' })
+      end
 
       cmp.setup({
         snippet = {
@@ -431,6 +562,7 @@ require("lazy").setup({
             mode = "symbol_text",
             maxwidth = 50,
             ellipsis_char = "...",
+            symbol_map = { Copilot = "", },
             before = function(entry, vim_item)
               return vim_item
             end,
@@ -444,8 +576,9 @@ require("lazy").setup({
           ["<C-e>"] = cmp.mapping.abort(),
           ["<CR>"] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item
           ["<Tab>"] = cmp.mapping(function(fallback)
-            if cmp.visible() then
-              cmp.select_next_item()
+            -- from copilot-cmp install guide
+            if cmp.visible() and has_words_before() then
+              cmp.select_next_item({ behavior = cmp.SelectBehavior.Select })
             elseif luasnip.expand_or_jumpable() then
               luasnip.expand_or_jump()
             else
@@ -462,13 +595,8 @@ require("lazy").setup({
             end
           end, { "i", "s" }),
         }),
-        sources = cmp.config.sources({
-          { name = "lazydev" },
-          { name = "nvim_lsp" },
-          { name = "luasnip" },
-          { name = "buffer" },
-          { name = "path" },
-        }),
+        sorting = cmp_sorting,
+        sources = cmp.config.sources(cmp_sources),
       })
 
       -- Use buffer source for `/` and `?` (if you enabled `native_menu`, this won't work anymore).
@@ -494,8 +622,15 @@ require("lazy").setup({
 
 vim.opt.foldmethod = "expr"
 vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
+vim.opt.foldlevel = 99
 
-require("lualine").setup()
+if vim.env.NVIM_AI == "1" then
+  require("lualine").setup({
+    sections = { lualine_x = {'copilot', 'encoding', 'fileformat', 'filetype' }, },
+  })
+else
+  require("lualine").setup()
+end
 
 require("mason").setup()
 

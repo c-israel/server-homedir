@@ -66,6 +66,7 @@ RUN find /home/ubuntu/ -mindepth 1 -delete
 COPY --from=setup --chown=ubuntu:ubuntu /root /home/ubuntu/
 COPY --chown=ubuntu:ubuntu README.md /home/ubuntu/
 WORKDIR /home/ubuntu/
+RUN rm .profile
 RUN mv README.md server_homedir_README.md
 RUN zip -9yr /tmp/server_homedir.zip . && mv /tmp/server_homedir.zip .
 
