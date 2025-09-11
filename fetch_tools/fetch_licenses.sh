@@ -82,7 +82,6 @@ GITHUB_LICENSES["cmp-nvim-lsp"]="https://github.com/hrsh7th/cmp-nvim-lsp/blob/ma
 GITHUB_LICENSES["vim-rhubarb"]="https://github.com/tpope/vim-rhubarb/blob/master/LICENSE"
 GITHUB_LICENSES["nvim-cmp"]="https://github.com/hrsh7th/nvim-cmp/blob/main/LICENSE"
 GITHUB_LICENSES["neotest"]="https://github.com/nvim-neotest/neotest/blob/master/LICENCE.md"
-GITHUB_LICENSES["tiny-glimmer.nvim"]="https://github.com/rachartier/tiny-glimmer.nvim/blob/main/LICENSE"
 GITHUB_LICENSES["kulala.nvim"]="https://github.com/mistweaverco/kulala.nvim/blob/main/LICENSE"
 GITHUB_LICENSES["jsregexp"]="https://github.com/kmarius/jsregexp/blob/master/LICENSE"
 GITHUB_LICENSES["lua-language-server"]="https://github.com/LuaLS/lua-language-server/blob/master/LICENSE"

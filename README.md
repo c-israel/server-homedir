@@ -145,8 +145,6 @@ Neovim plugins are included as well:
   [MIT License](https://github.com/hrsh7th/nvim-cmp/blob/main/LICENSE)
 * [nvim-neotest/neotest](https://github.com/nvim-neotest/neotest/)
   [MIT License](https://github.com/nvim-neotest/neotest/blob/master/LICENCE.md)
-* [rachartier/tiny-glimmer.nvim](https://github.com/rachartier/tiny-glimmer.nvim/)
-  [MIT License](https://github.com/rachartier/tiny-glimmer.nvim/blob/main/LICENSE)
 * [mistweaverco/kulala.nvim](https://github.com/mistweaverco/kulala.nvim)
   [MIT License](https://github.com/mistweaverco/kulala.nvim/blob/main/LICENSE)
 * [lua-language-server](https://github.com/LuaLS/lua-language-server)

@@ -100,19 +100,6 @@ require("lazy").setup({
       })
     end
   },
-  { "rachartier/tiny-glimmer.nvim", -- animations
-      event = "VeryLazy",
-      priority = 10, -- Needs to be a really low priority, to catch others plugins keybindings.
-      opts = {
-        overwrite = {
-          yank = { enabled = true },
-          search = { enabled = true },
-          paste = { enabled = true },
-          undo = { enabled = true },
-          redo = { enabled = true },
-        }
-      },
-  },
   { "mistweaverco/kulala.nvim", -- REST client
      keys = {
        { "<leader>Rs", desc = "Kulala: Send request" },
