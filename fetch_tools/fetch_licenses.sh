@@ -83,6 +83,8 @@ GITHUB_LICENSES["vim-rhubarb"]="https://github.com/tpope/vim-rhubarb/blob/master
 GITHUB_LICENSES["nvim-cmp"]="https://github.com/hrsh7th/nvim-cmp/blob/main/LICENSE"
 GITHUB_LICENSES["neotest"]="https://github.com/nvim-neotest/neotest/blob/master/LICENCE.md"
 GITHUB_LICENSES["kulala.nvim"]="https://github.com/mistweaverco/kulala.nvim/blob/main/LICENSE"
+GITHUB_LICENSES["render-markdown.nvim"]="https://github.com/MeanderingProgrammer/render-markdown.nvim/blob/main/LICENSE"
+GITHUB_LICENSES["bufferline.nvim"]="https://github.com/akinsho/bufferline.nvim/blob/main/LICENSE"
 GITHUB_LICENSES["jsregexp"]="https://github.com/kmarius/jsregexp/blob/master/LICENSE"
 GITHUB_LICENSES["lua-language-server"]="https://github.com/LuaLS/lua-language-server/blob/master/LICENSE"
 GITHUB_LICENSES["shellcheck"]="https://github.com/koalaman/shellcheck/blob/master/LICENSE"
@@ -99,7 +101,6 @@ GITHUB_LICENSES["copilot.lua"]="https://github.com/zbirenbaum/copilot.lua/blob/m
 GITHUB_LICENSES["copilot-cmp"]="https://github.com/zbirenbaum/copilot-cmp/blob/master/LICENSE"
 GITHUB_LICENSES["copilot-lualine"]="https://github.com/AndreM222/copilot-lualine/blob/main/LICENSE"
 GITHUB_LICENSES["codecompanion.nvim"]="https://github.com/olimorris/codecompanion.nvim/blob/main/LICENSE"
-GITHUB_LICENSES["render-markdown.nvim"]="https://github.com/MeanderingProgrammer/render-markdown.nvim/blob/main/LICENSE"
 GITHUB_LICENSES["mcphub.nvim"]="https://github.com/ravitemer/mcphub.nvim/blob/main/LICENSE.md"
 
 # --- Configuration: Canonical Licenses ---

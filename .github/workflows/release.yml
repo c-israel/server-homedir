@@ -25,6 +25,7 @@ jobs:
           git clone https://github.com/mfussenegger/nvim-dap.git gpl-sources/nvim-dap
           git clone https://github.com/mfussenegger/nvim-lint.git gpl-sources/nvim-lint
           git clone https://github.com/sindrets/diffview.nvim.git gpl-sources/diffview.nvim
+          git clone https://github.com/akinsho/bufferline.nvim gpl-sources/bufferline.nvim
           
           # this one is technically probably not necessary, since this plugin is not distributed with the artifact
           git clone https://github.com/mfussenegger/nvim-dap-python.git gpl-sources/nvim-dap-python

@@ -151,7 +151,8 @@ def test_third_party_licenses():
         ],
         "BSD2Clause": ["lnav.LICENSE"],
         "CCBY3": ["jq.COPYING"],
-        "GPLv3": ["nvim-dap.LICENSE.txt", "nvim-lint.LICENSE.txt", "shellcheck.LICENSE", "nvim-dap-python.LICENSE.txt"],
+        "GPLv3": ["nvim-dap.LICENSE.txt", "nvim-lint.LICENSE.txt", "shellcheck.LICENSE", "nvim-dap-python.LICENSE.txt",
+                  "bufferline.nvim.LICENSE"],
         "GPLv3orHigher": ["diffview.nvim.LICENSE"],
         "ISC": ["starship.LICENSE", "tmux.COPYING"],
         "MIT": [

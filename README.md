@@ -147,6 +147,10 @@ Neovim plugins are included as well:
   [MIT License](https://github.com/nvim-neotest/neotest/blob/master/LICENCE.md)
 * [mistweaverco/kulala.nvim](https://github.com/mistweaverco/kulala.nvim)
   [MIT License](https://github.com/mistweaverco/kulala.nvim/blob/main/LICENSE)
+* [MeanderingProgrammer/render-markdown.nvim](https://github.com/MeanderingProgrammer/render-markdown.nvim)
+  [MIT License](https://github.com/MeanderingProgrammer/render-markdown.nvim/blob/main/LICENSE)
+* [akinsho/bufferline.nvim](https://github.com/akinsho/bufferline.nvim)
+  [GNU GPL v3.0](https://github.com/akinsho/bufferline.nvim/blob/main/LICENSE)
 * [lua-language-server](https://github.com/LuaLS/lua-language-server)
   [MIT License](https://github.com/LuaLS/lua-language-server/blob/master/LICENSE)  
 * [shellcheck](https://github.com/koalaman/shellcheck)
@@ -164,8 +168,8 @@ Nevertheless, here are the links to the relevant repositories and licenses:
 
 Similarly, by running NeoVim with the environment variable `NVIM_AI` set to `1`, AI plugins will be installed and set up.
 That is, `NickvanDyke/opencode.nvim` (only if `opencode` is on the PATH), `zbirenbaum/copilot.lua` 
-and `zbirenbaum/copilot-cmp`, `AndreM222/copilot-lualine`, `olimorris/codecompanion.nvim` and its dependencies 
-`MeanderingProgrammer/render-markdown.nvim` and `ravitemer/mcphub.nvim`.
+and `zbirenbaum/copilot-cmp`, `AndreM222/copilot-lualine`, `olimorris/codecompanion.nvim` and its dependency
+`ravitemer/mcphub.nvim`.
 Here are the license links to those:
 
 * [NickvanDyke/opencode.nvim](https://github.com/NickvanDyke/opencode.nvim)
@@ -178,7 +182,5 @@ Here are the license links to those:
   [MIT License](https://github.com/AndreM222/copilot-lualine/blob/main/LICENSE)
 * [olimorris/codecompanion.nvim](https://github.com/olimorris/codecompanion.nvim)
   [MIT License](https://github.com/olimorris/codecompanion.nvim/blob/main/LICENSE)
-* [MeanderingProgrammer/render-markdown.nvim](https://github.com/MeanderingProgrammer/render-markdown.nvim)
-  [MIT License](https://github.com/MeanderingProgrammer/render-markdown.nvim/blob/main/LICENSE)
 * [ravitemer/mcphub.nvim](https://github.com/ravitemer/mcphub.nvim)
   [MIT License](https://github.com/ravitemer/mcphub.nvim/blob/main/LICENSE.md)

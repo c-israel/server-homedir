@@ -100,6 +100,14 @@ require("lazy").setup({
       })
     end
   },
+  {'akinsho/bufferline.nvim',
+    dependencies = 'nvim-tree/nvim-web-devicons',
+    opts = {
+      options = {
+        numbers = "buffer_id",
+      },
+    },
+  },
   { "mistweaverco/kulala.nvim", -- REST client
      keys = {
        { "<leader>Rs", desc = "Kulala: Send request" },
@@ -135,12 +143,37 @@ require("lazy").setup({
     cond = vim.env.NVIM_AI == "1",
   },
   {"MeanderingProgrammer/render-markdown.nvim",
-    cond = vim.env.NVIM_AI == "1",
     ft = { "markdown", "codecompanion" }
+  },
+  { "ravitemer/mcphub.nvim",
+    cond = vim.env.NVIM_AI == "1",
+    dependencies = {
+        "nvim-lua/plenary.nvim",
+    },
+    build = "bundled_build.lua", -- this only runs on installation!
+    config = function ()
+      require("mcphub").setup({use_bundled_binary = true,})
+    end
   },
   {"olimorris/codecompanion.nvim",
     cond = vim.env.NVIM_AI == "1",
-    opts = {},
+    opts = {
+      extensions = {
+        mcphub = {
+          callback = "mcphub.extensions.codecompanion",
+          opts = {
+            make_vars = true,
+            make_slash_commands = true,
+            show_result_in_chat = true,
+          },
+        },
+      },
+    },
+    keys = { -- suggested keybinds from the getting started documentation
+      { "<C-a>", mode={"n", "v"}, "<cmd>CodeCompanionActions<cr>", desc = "CodeCompanion Action Palette"},
+      { "<LocalLeader>a", mode={"n", "v"}, "<cmd>CodeCompanionChat Toggle<cr>", desc = "Toggle CodeCompanion Chat", noremap = true},
+      { "ga", mode="v", "<cmd>CodeCompanionChat Add<cr>", desc = "Add selection to CodeCompanion Chat", noremap = true},
+    },
     dependencies = {
       "ravitemer/mcphub.nvim",
       "nvim-lua/plenary.nvim",
@@ -295,6 +328,11 @@ require("lazy").setup({
             { "<leader>to", function() require("neotest").output.open({ enter = true, auto_close = true }) end, desc = "Neotest: Open Output" },
             { "<leader>tO", function() require("neotest").output_panel.toggle() end, desc = "Neotest: Toggle Output Panel" },
             { "<leader>tS", function() require("neotest").run.stop() end, desc = "Neotest: Stop Test Run" },
+               -- Debugging keybindings
+            { "<leader>tdt", function() require("neotest").run.run(vim.fn.expand("%"), { strategy = "dap" }) end, desc = "Neotest: Debug File" },
+            { "<leader>tdT", function() require("neotest").run.run(vim.uv.cwd(), { strategy = "dap" }) end, desc = "Neotest: Debug All Files" },
+            { "<leader>tdr", function() require("neotest").run.run({ strategy = "dap" }) end, desc = "Neotest: Debug Nearest" },
+            { "<leader>tdl", function() require("neotest").run.run_last({ strategy = "dap" }) end, desc = "Neotest: Debug Last Run" },
           },
       },
   "mfussenegger/nvim-lint",
