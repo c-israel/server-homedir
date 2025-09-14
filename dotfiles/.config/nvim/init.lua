@@ -121,6 +121,25 @@ require("lazy").setup({
        kulala_keymaps_prefix = "",
      },
   },
+  {
+    'kristijanhusak/vim-dadbod-ui',
+    dependencies = {
+      { 'tpope/vim-dadbod', lazy = true },
+      { 'kristijanhusak/vim-dadbod-completion', ft = { 'sql', 'mysql', 'plsql', 'jq' }, lazy = true },
+    },
+    cmd = {
+      'DBUI',
+      'DBUIToggle',
+      'DBUIAddConnection',
+      'DBUIFindBuffer',
+    },
+    keys = {
+      { "<leader>D", "<cmd>DBUIToggle<cr>", desc = "DBUI: Open Database UI" },
+    },
+    init = function()
+      vim.g.db_ui_use_nerd_fonts = 1
+    end,
+  },
   {"zbirenbaum/copilot.lua",
     cond = vim.env.NVIM_AI == "1",
     cmd = "Copilot",
@@ -452,8 +471,8 @@ require("lazy").setup({
       -- Other
       { "<leader>z", function() Snacks.zen() end, desc = "Toggle Zen Mode", },
       { "<leader>Z", function() Snacks.zen.zoom() end, desc = "Toggle Zoom", },
-      { "<leader>.", function() Snacks.scratch() end, desc = "Toggle Scratch Buffer", },
-      { "<leader>S", function() Snacks.scratch.select() end, desc = "Select Scratch Buffer", },
+      { "<leader>s.", function() Snacks.scratch() end, desc = "Toggle Scratch Buffer", },
+      { "<leader>sS", function() Snacks.scratch.select() end, desc = "Select Scratch Buffer", },
       { "<leader>n", function() Snacks.notifier.show_history() end, desc = "Notification History", },
       { "<leader>bd", function() Snacks.bufdelete() end, desc = "Delete Buffer", },
       { "<leader>cR", function() Snacks.rename.rename_file() end, desc = "Rename File", },
@@ -568,6 +587,7 @@ require("lazy").setup({
         { name = "luasnip" },
         { name = "buffer" },
         { name = "path" },
+        { name = "vim-dadbod-completion" },
       }
       if vim.env.NVIM_AI == "1" then
         table.insert(cmp_sources, 1, { name = "copilot" })

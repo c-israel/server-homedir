@@ -166,11 +166,12 @@ def test_third_party_licenses():
             "nvim-lightbulb.LICENSE", "neotest.LICENCE.md", "kulala.nvim.LICENSE",
             "basedpyright.LICENSE.txt", "neotest-python.LICENCE.md", "opencode.nvim.LICENSE", "copilot.lua.LICENSE",
             "copilot-cmp.LICENSE", "copilot-lualine.LICENSE", "codecompanion.nvim.LICENSE",
-            "render-markdown.nvim.LICENSE", "mcphub.nvim.LICENSE.md"
+            "render-markdown.nvim.LICENSE", "mcphub.nvim.LICENSE.md", "vim-dadbod-ui.LICENSE",
+            "vim-dadbod-completion.LICENSE"
         ],
         "MPL2": ["stylua.LICENSE.md"],
         "Unlicense": ["ripgrep.UNLICENSE"],
-        "Vim": ["_canonical.vim-license.txt", "neovim.LICENSE.txt", "vim-sleuth.LICENSE.txt"],
+        "Vim": ["_canonical.vim-license.txt", "neovim.LICENSE.txt", "vim-sleuth.LICENSE.txt", "vim-dadbod.LICENSE.txt"],
         "curl": ["static-curl_curl.COPYING"]
     }
 

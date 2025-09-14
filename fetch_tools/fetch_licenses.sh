@@ -82,6 +82,8 @@ GITHUB_LICENSES["cmp-nvim-lsp"]="https://github.com/hrsh7th/cmp-nvim-lsp/blob/ma
 GITHUB_LICENSES["vim-rhubarb"]="https://github.com/tpope/vim-rhubarb/blob/master/LICENSE"
 GITHUB_LICENSES["nvim-cmp"]="https://github.com/hrsh7th/nvim-cmp/blob/main/LICENSE"
 GITHUB_LICENSES["neotest"]="https://github.com/nvim-neotest/neotest/blob/master/LICENCE.md"
+GITHUB_LICENSES["vim-dadbod-ui"]="https://github.com/kristijanhusak/vim-dadbod-ui/blob/master/LICENSE"
+GITHUB_LICENSES["vim-dadbod-completion"]="https://github.com/kristijanhusak/vim-dadbod-completion/blob/master/LICENSE"
 GITHUB_LICENSES["kulala.nvim"]="https://github.com/mistweaverco/kulala.nvim/blob/main/LICENSE"
 GITHUB_LICENSES["render-markdown.nvim"]="https://github.com/MeanderingProgrammer/render-markdown.nvim/blob/main/LICENSE"
 GITHUB_LICENSES["bufferline.nvim"]="https://github.com/akinsho/bufferline.nvim/blob/main/LICENSE"
@@ -111,7 +113,7 @@ CANONICAL_LICENSE_URLS["vim-license"]="https://raw.githubusercontent.com/vim/vim
 
 declare -A COMPONENTS_BY_CANONICAL_LICENSE
 # Space-separated list of components using the Vim License.
-COMPONENTS_BY_CANONICAL_LICENSE["vim-license"]="vim-sleuth"
+COMPONENTS_BY_CANONICAL_LICENSE["vim-license"]="vim-sleuth vim-dadbod"
 
 # --- Main Script Logic ---
 
