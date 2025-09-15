@@ -1,4 +1,3 @@
-
 FROM ubuntu:latest AS builder
 ENV DEBIAN_FRONTEND=noninteractive
 ARG TARGETARCH=amd64
@@ -13,7 +12,8 @@ RUN apt-get update && apt-get install -y \
     build-essential \
     python3 \
     python3-venv \
-    zip \
+    tar \
+    gzip \
     bash \
     busybox && \
     rm -rf /var/lib/apt/lists/*
@@ -23,8 +23,8 @@ COPY fetch_tools ./fetch_tools
 
 RUN chmod +x ./fetch_tools/fetch_tools.sh && cd fetch_tools && ./fetch_tools.sh
 RUN bash ./fetch_tools/fetch_licenses.sh && \
-  zip -r server_homedir_THIRD_PARTY_LICENSES.zip licenses &&\
-  mv server_homedir_THIRD_PARTY_LICENSES.zip /root
+  tar -czf server_homedir_THIRD_PARTY_LICENSES.tar.gz licenses &&\
+  mv server_homedir_THIRD_PARTY_LICENSES.tar.gz /root
 
 WORKDIR /app
 
@@ -42,7 +42,8 @@ RUN apt-get update && apt-get install -y \
     build-essential \
     python3 \
     python3-venv \
-    zip \
+    tar \
+    gzip \
     bash \
     busybox && \
     rm -rf /var/lib/apt/lists/*
@@ -58,7 +59,7 @@ FROM ubuntu:latest
 ENV DEBIAN_FRONTEND=noninteractive
 
 # Install only the necessary RUNTIME dependencies.
-RUN apt-get update && apt-get install -y python3 python3-venv git bash zip
+RUN apt-get update && apt-get install -y python3 python3-venv git bash tar gzip
     #rm -rf /var/lib/apt/lists/*
 
 USER ubuntu
@@ -68,7 +69,7 @@ COPY --chown=ubuntu:ubuntu README.md /home/ubuntu/
 WORKDIR /home/ubuntu/
 RUN rm .profile
 RUN mv README.md server_homedir_README.md
-RUN zip -9yr /tmp/server_homedir.zip . && mv /tmp/server_homedir.zip .
+RUN tar -czf /tmp/server_homedir.tar.gz . && mv /tmp/server_homedir.tar.gz .
 
 WORKDIR /app
 

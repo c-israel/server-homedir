@@ -3,8 +3,8 @@ set -e
 
 TARGET_ARCH="${TARGET_ARCH:-amd64}"
 MAIN_IMAGE_TAG="server-homedir-builder"
-ARTIFACT_PATH_IN_IMAGE="/home/ubuntu/server_homedir.zip"
-LOCAL_ARTIFACT_NAME="server_homedir.zip"
+ARTIFACT_PATH_IN_IMAGE="/home/ubuntu/server_homedir.tar.gz"
+LOCAL_ARTIFACT_NAME="server_homedir.tar.gz"
 
 TEST_DIR="test"
 TEST_IMAGE_TAG="env-tester:latest"

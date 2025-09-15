@@ -1,5 +1,5 @@
 from sys import stdout
-import zipfile
+import tarfile
 
 import pexpect
 import pytest
@@ -9,7 +9,7 @@ import subprocess
 from pathlib import Path
 
 USER_HOME = "/home/tester"
-ARTIFACT_FILENAME = "server_homedir.zip"
+ARTIFACT_FILENAME = "server_homedir.tar.gz"
 
 PROMPT_PATTERN = r'\$$'
 
@@ -20,15 +20,15 @@ def bash_session():
     A pytest fixture that sets up the environment and starts a bash shell.
     This runs once per test module.
     """
-    unzip_command = f"unzip -o {USER_HOME}/{ARTIFACT_FILENAME} -d {USER_HOME}"
-    print(f"DEBUG: Running initial setup command: '{unzip_command}'")
+    extract_command = f"tar -xzf {USER_HOME}/{ARTIFACT_FILENAME} -C {USER_HOME}"
+    print(f"DEBUG: Running initial setup command: '{extract_command}'")
 
     try:
-        output, exit_status = pexpect.run(unzip_command, withexitstatus=True, encoding='utf-8', timeout=30)
-        assert exit_status == 0, f"Unzip command failed with exit status {exit_status}:\n{output}"
-        print("DEBUG: Artifact unzipped successfully.")
+        output, exit_status = pexpect.run(extract_command, withexitstatus=True, encoding='utf-8', timeout=30)
+        assert exit_status == 0, f"Extract command failed with exit status {exit_status}:\n{output}"
+        print("DEBUG: Artifact extracted successfully.")
     except Exception as e:
-        pytest.fail(f"Failed to unzip artifact: {e}")
+        pytest.fail(f"Failed to extract artifact: {e}")
 
     with open(f"{USER_HOME}/.config/starship.toml", "w") as file:
         file.write('format = "$directory\\\\$"\n\n[directory]\nstyle = "none"')
@@ -138,7 +138,7 @@ def test_neovim_startup_no_errors(bash_session):
 
 def test_third_party_licenses():
     """
-    Test that all expected third-party license files are present in the licenses ZIP
+    Test that all expected third-party license files are present in the licenses TAR.GZ
     and contain the expected content based on their license type.
     """
     # expected license files organized by license type
@@ -190,30 +190,31 @@ def test_third_party_licenses():
         "curl": ["Permission to use, copy, modify,", "the name of a copyright holder"]
     }
 
-    licenses_zip_path = Path(USER_HOME) / "server_homedir_THIRD_PARTY_LICENSES.zip"
+    licenses_tar_path = Path(USER_HOME) / "server_homedir_THIRD_PARTY_LICENSES.tar.gz"
 
-    assert licenses_zip_path.exists(), f"Third-party licenses ZIP file not found: {licenses_zip_path}"
+    assert licenses_tar_path.exists(), f"Third-party licenses TAR.GZ file not found: {licenses_tar_path}"
 
-    with zipfile.ZipFile(licenses_zip_path, 'r') as zip_file:
-        zip_contents = set(zip_file.namelist())
+    with tarfile.open(licenses_tar_path, 'r:gz') as tar_file:
+        tar_contents = set(tar_file.getnames())
 
         all_expected_files = {f"licenses/{file}" for files_list in expected_licenses.values() for file in files_list}
 
-        missing_files = all_expected_files - zip_contents
-        assert not missing_files, f"Missing license files in ZIP: {missing_files}"
+        missing_files = all_expected_files - tar_contents
+        assert not missing_files, f"Missing license files in TAR.GZ: {missing_files}"
 
         # Verify content for license types that have expected content defined
         for license_type, expected_strings in expected_content.items():
             files_for_type = expected_licenses.get(license_type, [])
 
             for license_file in files_for_type:
-                license_file_path_in_zip = f"licenses/{license_file}"
-                if license_file_path_in_zip in zip_contents:
-                    with zip_file.open(license_file_path_in_zip) as f:
-                        license_in_zip_file_content = f.read().decode('utf-8', errors='ignore')
+                license_file_path_in_tar = f"licenses/{license_file}"
+                if license_file_path_in_tar in tar_contents:
+                    tar_member = tar_file.extractfile(license_file_path_in_tar)
+                    if tar_member:
+                        license_in_tar_file_content = tar_member.read().decode('utf-8', errors='ignore')
 
-                    for expected_string in expected_strings:
-                        assert expected_string in license_in_zip_file_content, \
-                            f"Expected string '{expected_string}' not found in {license_file} (license type: {license_type})"
+                        for expected_string in expected_strings:
+                            assert expected_string in license_in_tar_file_content, \
+                                f"Expected string '{expected_string}' not found in {license_file} (license type: {license_type})"
 
-        print(f"Successfully verified {len(all_expected_files)} license files in the third-party licenses ZIP")
+        print(f"Successfully verified {len(all_expected_files)} license files in the third-party licenses TAR.GZ")
