@@ -30,6 +30,7 @@ vim.o.timeoutlen = 300
 vim.o.completeopt = "menuone,noselect" -- better completion menu behavior
 
 vim.o.termguicolors = true -- enables 24-bit RGB color
+vim.o.mousemoveevent = true -- enables mousemove events (for eagle plugin)
 
 vim.opt.spell = false -- disable by default so we don't block downloading dictionaries
 vim.opt.spelllang = { "en", "de" }
@@ -108,6 +109,8 @@ require("lazy").setup({
       },
     },
   },
+  { 'lewis6991/satellite.nvim', opts = {}, },
+  { "soulis-1256/eagle.nvim", opts = {}, },
   { "mistweaverco/kulala.nvim", -- REST client
      keys = {
        { "<leader>Rs", desc = "Kulala: Send request" },
