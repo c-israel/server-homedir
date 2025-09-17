@@ -672,12 +672,13 @@ vim.opt.foldmethod = "expr"
 vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
 vim.opt.foldlevel = 99
 
+local lualine_c = { "lsp_status", { "filename", path = 1 } }
 if vim.env.NVIM_AI == "1" then
   require("lualine").setup({
-    sections = { lualine_x = {'copilot', 'encoding', 'fileformat', 'filetype' }, },
+    sections = { lualine_c = lualine_c, lualine_x = {'copilot', 'encoding', 'fileformat', 'filetype' }, },
   })
 else
-  require("lualine").setup()
+  require("lualine").setup({ sections = { lualine_c = lualine_c, } })
 end
 
 require("mason").setup()
