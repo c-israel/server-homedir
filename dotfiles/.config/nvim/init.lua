@@ -709,49 +709,64 @@ require("mason-lspconfig").setup({
 })
 require("dapui").setup()
 
--- Setup LSP with completion capabilities
-local capabilities = require("cmp_nvim_lsp").default_capabilities()
-local lspconfig = require("lspconfig")
-
 vim.lsp.inlay_hint.enable() -- enable inlay hints by default
 
--- Setup language servers with completion capabilities
-lspconfig.lua_ls.setup({
-  capabilities = capabilities,
-  settings = {
-    Lua = {
-      -- diagnostics = {
-      --  globals = { "vim", "snacks", "Snacks" },
-      -- },
-      hint = { enable = true}
-    },
-  },
-})
-if vim.env.NVIM_PYTHON_DEV == "1" then
-    lspconfig.basedpyright.setup {
+-- Setup LSP with completion capabilities
+local capabilities = require("cmp_nvim_lsp").default_capabilities()
+require("lspconfig")
+
+local lsps = {
+  {
+    "lua_ls",
+    {
       capabilities = capabilities,
       settings = {
-        python = {
-          analysis = {
-            typeCheckingMode = "basic",
-            autoImportCompletions = true,
-            autoSearchPaths = true,
-            diagnosticMode = "openFilesOnly",
-            useLibraryCodeForTypes = true,
-            inlayHints = {
-              enabled = true,
-              variableTypes = true,
-              functionReturnTypes = true,
-              callArgumentNames = "all",
-              genericTypes = true,
-            },
-          },
+        Lua = {
+          hint = { enable = true }
         },
       },
     }
+  },
+}
+
+-- add python LSP to the list if needed
+if vim.env.NVIM_PYTHON_DEV == "1" then
+    table.insert(lsps, {
+      "basedpyright",
+      {
+        capabilities = capabilities,
+        settings = {
+          python = {
+            analysis = {
+              typeCheckingMode = "basic",
+              autoImportCompletions = true,
+              autoSearchPaths = true,
+              diagnosticMode = "openFilesOnly",
+              useLibraryCodeForTypes = true,
+              inlayHints = {
+                enabled = true,
+                variableTypes = true,
+                functionReturnTypes = true,
+                callArgumentNames = "all",
+                genericTypes = true,
+              },
+            },
+          },
+        },
+      }
+    })
 end
 
--- Add other language servers as needed following the same pattern
+-- Loop to enable and configure servers
+for _, lsp in ipairs(lsps) do
+  local name = lsp[1]
+  local config = lsp[2]
+
+  vim.lsp.enable(name)
+  if config then
+    vim.lsp.config(name, config)
+  end
+end
 
 -- nvim-lint - try linting automatically after write
 vim.api.nvim_create_autocmd({ "BufWritePost" }, {
