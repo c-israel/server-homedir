@@ -122,6 +122,9 @@ require("lazy").setup({
        global_keymaps = true,
        global_keymaps_prefix = "<leader>R",
        kulala_keymaps_prefix = "",
+       ui = {
+         max_response_size = 2 * 1024 * 1024, -- increased from default 32 KiB
+       },
      },
   },
   {
@@ -400,8 +403,20 @@ require("lazy").setup({
       -- your configuration comes here
       -- or leave it empty to use the default settings
       -- refer to the configuration section below
-      bigfile = { enabled = true }, -- disable syntax on large files
-      dashboard = { enabled = true },
+      bigfile = { -- disable syntax on large files
+        enabled = true,
+        size = 2.5 * 1024 * 1024, -- increase from default 1.5MiB
+      },
+      dashboard = {
+        enabled = true,
+        sections = { -- adjusted from `files` example in documentation
+          { section = "header", },
+          { section = "keys", },
+          { icon = " ", title = "Recent Files", section = "recent_files", indent = 2, padding = 1 },
+          { icon = " ", title = "Projects", section = "projects", indent = 2, padding = 1 },
+          { section = "startup" },
+        },
+      },
       explorer = { enabled = true },
       indent = { enabled = true },
       input = { enabled = true },
