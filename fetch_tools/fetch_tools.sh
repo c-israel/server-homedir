@@ -37,6 +37,12 @@ wget "$DELTA_URL" -O - | tar -xzvf - --to-stdout --wildcards '*/delta' > "$BIN_T
 wget "$DELTA_COMPLETIONS_URL" -O "$COMP_TARGET/delta"
 wget "$DELTA_MANPAGE_URL" -O - | gunzip > "$MAN_TARGET/delta.1"
 
+wget -O - "$FD_URL" | tee \
+    >(tar -xzvf - --to-stdout --wildcards '*/fd' > "$BIN_TARGET/fd") \
+    >(tar -xzvf - --to-stdout --wildcards '*/fd.1' > "$MAN_TARGET/fd.1") \
+    >(tar -xzvf - --to-stdout --wildcards '*/autocomplete/fd.bash' > "$COMP_TARGET/fd") \
+    >/dev/null
+
 # wget "$BASH_URL" -O "$TARGET_DIR/.local/bin/bash" # maybe let's not include that
 # wget "$BUSYBOX_URL" -O "$TARGET_DIR/.local/bin/busybox" # not this either
 

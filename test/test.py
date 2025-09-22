@@ -73,7 +73,7 @@ def test_tool_versions(bash_session):
     TOOLS_TO_CHECK = {
         "--version": [
             "bat", "jq", "fzf", "rg", "curl", "lnav",
-            "erd", "delta", "lsd", "stylua", "nvim", "starship"
+            "erd", "delta", "fd", "lsd", "stylua", "nvim", "starship"
         ],
         "-V": ["tmux"],
     }
@@ -100,7 +100,7 @@ def test_files_present(bash_session):
     assert comp_dir.is_dir(), f"Missing bash-completion dir: {comp_dir}"
 
     tools_expected = [
-        "fzf", "lsd", "bat", "delta", "rg", "jq", "lnav",
+        "fzf", "lsd", "bat", "delta", "fd", "rg", "jq", "lnav",
         "nvim", "starship", "erd", "curl", "stylua", "tmux"
     ]
     for tool in tools_expected:
@@ -108,12 +108,12 @@ def test_files_present(bash_session):
         assert tool_path.exists(), f"Missing tool: {tool_path}"
         assert os.access(tool_path, os.X_OK), f"Tool not executable: {tool_path}"
 
-    manpages_expected = ["lsd.1", "jq.1", "bat.1", "delta.1", "rg.1", "fzf.1"]
+    manpages_expected = ["lsd.1", "jq.1", "bat.1", "delta.1", "fd.1", "rg.1", "fzf.1"]
     for manpage in manpages_expected:
         man_path = man1_dir / manpage
         assert man_path.is_file(), f"Missing manpage: {man_path}"
 
-    completions_expected = ["fzf", "lsd", "bat", "delta", "erd", "rg"]
+    completions_expected = ["fzf", "lsd", "bat", "delta", "fd", "erd", "rg"]
     for comp in completions_expected:
         comp_path = comp_dir / comp
         assert comp_path.is_file(), f"Missing bash-completion file: {comp_path}"
@@ -147,7 +147,7 @@ def test_third_party_licenses():
             "cmp_luasnip.LICENSE", "luasnip.LICENSE", "neovim.LICENSE.txt", "snacks-nvim.LICENSE",
             "lazy-nvim.LICENSE", "mason-lspconfig-nvim.LICENSE", "nvim-lspconfig.LICENSE.md", "which-key-nvim.LICENSE",
             "lsd.LICENSE", "mason-nvim.LICENSE", "nvim-treesitter.LICENSE", "lua-console.nvim.LICENSE",
-            "lazydev.LICENSE", "eagle.nvim.LICENSE"
+            "lazydev.LICENSE", "eagle.nvim.LICENSE", "fd-APACHE.LICENSE-APACHE"
         ],
         "BSD2Clause": ["lnav.LICENSE"],
         "CCBY3": ["jq.COPYING"],
@@ -167,7 +167,7 @@ def test_third_party_licenses():
             "basedpyright.LICENSE.txt", "neotest-python.LICENCE.md", "opencode.nvim.LICENSE", "copilot.lua.LICENSE",
             "copilot-cmp.LICENSE", "copilot-lualine.LICENSE", "codecompanion.nvim.LICENSE",
             "render-markdown.nvim.LICENSE", "mcphub.nvim.LICENSE.md", "vim-dadbod-ui.LICENSE",
-            "vim-dadbod-completion.LICENSE", "satellite.nvim.LICENSE"
+            "vim-dadbod-completion.LICENSE", "satellite.nvim.LICENSE", "fd-MIT.LICENSE-MIT"
         ],
         "MPL2": ["stylua.LICENSE.md"],
         "Unlicense": ["ripgrep.UNLICENSE"],

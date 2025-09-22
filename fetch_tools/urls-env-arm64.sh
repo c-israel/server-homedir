@@ -19,6 +19,7 @@ DELTA_URL="https://github.com/dandavison/delta/releases/download/0.18.2/delta-0.
 DELTA_COMPLETIONS_URL="https://raw.githubusercontent.com/dandavison/delta/refs/tags/0.18.2/etc/completion/completion.bash"
 DELTA_MANPAGE_URL="https://manpages.ubuntu.com/manpages.gz/noble/man1/delta.1.gz"
 
+FD_URL="https://github.com/sharkdp/fd/releases/download/v10.3.0/fd-v10.3.0-aarch64-unknown-linux-musl.tar.gz"
 
 # # static bash build. Probably a bad idea, since I would have to provide access to the Corresponding Source
 # BASH_URL="https://github.com/robxu9/bash-static/releases/download/5.2.015-1.2.3-2/bash-linux-x86_64"
