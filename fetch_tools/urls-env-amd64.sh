@@ -40,9 +40,9 @@ ERD_URL="https://github.com/solidiquis/erdtree/releases/download/v3.1.2/erd-v3.1
 # lnav
 # contains binary and readme
 # LNAV_URL="https://github.com/tstack/lnav/releases/download/v0.12.0/lnav-0.12.0-linux-musl-x86_64.zip"
-LNAV_URL="https://github.com/tstack/lnav/releases/download/v0.13.0/lnav-0.13.0-linux-musl-x86_64.zip"
+LNAV_URL="https://github.com/tstack/lnav/releases/download/v0.13.2/lnav-0.13.2-linux-musl-x86_64.zip"
 # LNAV_MANPAGE_URL="https://github.com/tstack/lnav/blob/v0.12.0/lnav.1"
-LNAV_MANPAGE_URL="https://raw.githubusercontent.com/tstack/lnav/refs/tags/v0.13.0/lnav.1"
+LNAV_MANPAGE_URL="https://raw.githubusercontent.com/tstack/lnav/refs/tags/v0.13.2/lnav.1"
 
 # rg + manpage + completion
 # contains binary, manpage and completions
