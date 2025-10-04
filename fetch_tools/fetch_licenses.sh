@@ -32,7 +32,7 @@ declare -A GITHUB_LICENSES
 # Tools
 GITHUB_LICENSES["kickstart-nvim"]="https://github.com/nvim-lua/kickstart.nvim/blob/master/LICENSE.md"
 GITHUB_LICENSES["starship"]="https://github.com/starship/starship/blob/v1.23.0/LICENSE"
-GITHUB_LICENSES["neovim"]="https://github.com/neovim/neovim/blob/v0.11.3/LICENSE.txt"
+GITHUB_LICENSES["neovim"]="https://github.com/neovim/neovim/blob/v0.11.4/LICENSE.txt"
 GITHUB_LICENSES["fzf"]="https://github.com/junegunn/fzf/blob/v0.65.2/LICENSE"
 GITHUB_LICENSES["ripgrep"]="https://github.com/BurntSushi/ripgrep/blob/14.1.1/UNLICENSE"
 GITHUB_LICENSES["static-curl_mit"]="https://github.com/stunnel/static-curl/blob/8.15.0/LICENSE"

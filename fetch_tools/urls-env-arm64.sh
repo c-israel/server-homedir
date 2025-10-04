@@ -63,7 +63,7 @@ STARSHIP_URL="https://github.com/starship/starship/releases/download/v1.23.0/sta
 
 # nvim
 # contains binary, libs and manpage
-NVIM_URL="https://github.com/neovim/neovim/releases/download/v0.11.3/nvim-linux-arm64.tar.gz"
+NVIM_URL="https://github.com/neovim/neovim/releases/download/v0.11.4/nvim-linux-arm64.tar.gz"
 
 STYLUA_URL="https://github.com/JohnnyMorganz/StyLua/releases/download/v0.20.0/stylua-linux-aarch64.zip"
 
