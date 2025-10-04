@@ -28,7 +28,7 @@ FD_URL="https://github.com/sharkdp/fd/releases/download/v10.3.0/fd-v10.3.0-aarch
 # BUSYBOX_URL="https://busybox.net/downloads/binaries/1.35.0-x86_64-linux-musl/busybox"
 
 # contains binary
-CURL_URL="https://github.com/stunnel/static-curl/releases/download/8.15.0/curl-linux-aarch64-musl-8.15.0.tar.xz"
+CURL_URL="https://github.com/stunnel/static-curl/releases/download/8.16.0/curl-linux-aarch64-musl-8.16.0.tar.xz"
 
 
 # erd + completion
