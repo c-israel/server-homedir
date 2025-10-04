@@ -1,4 +1,4 @@
-#!/bin/sh
+# shellcheck disable=SC2034
 
 # ls-deluxe
 LSD_URL="https://github.com/lsd-rs/lsd/releases/download/v1.1.5/lsd-v1.1.5-x86_64-unknown-linux-musl.tar.gz"
