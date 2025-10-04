@@ -167,7 +167,7 @@ def test_third_party_licenses():
             "basedpyright.LICENSE.txt", "neotest-python.LICENCE.md", "opencode.nvim.LICENSE", "copilot.lua.LICENSE",
             "copilot-cmp.LICENSE", "copilot-lualine.LICENSE", "codecompanion.nvim.LICENSE",
             "render-markdown.nvim.LICENSE", "mcphub.nvim.LICENSE.md", "vim-dadbod-ui.LICENSE",
-            "vim-dadbod-completion.LICENSE", "satellite.nvim.LICENSE", "fd-MIT.LICENSE-MIT"
+            "vim-dadbod-completion.LICENSE", "satellite.nvim.LICENSE", "fd-MIT.LICENSE-MIT", "lensline.nvim.LICENSE"
         ],
         "MPL2": ["stylua.LICENSE.md"],
         "Unlicense": ["ripgrep.UNLICENSE"],

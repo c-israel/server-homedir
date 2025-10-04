@@ -91,6 +91,7 @@ GITHUB_LICENSES["render-markdown.nvim"]="https://github.com/MeanderingProgrammer
 GITHUB_LICENSES["satellite.nvim"]="https://github.com/lewis6991/satellite.nvim/blob/main/LICENSE"
 GITHUB_LICENSES["eagle.nvim"]="https://github.com/soulis-1256/eagle.nvim/blob/main/LICENSE"
 GITHUB_LICENSES["bufferline.nvim"]="https://github.com/akinsho/bufferline.nvim/blob/main/LICENSE"
+GITHUB_LICENSES["lensline.nvim"]="https://github.com/oribarilan/lensline.nvim/blob/2.0.0/LICENSE"
 GITHUB_LICENSES["jsregexp"]="https://github.com/kmarius/jsregexp/blob/master/LICENSE"
 GITHUB_LICENSES["lua-language-server"]="https://github.com/LuaLS/lua-language-server/blob/master/LICENSE"
 GITHUB_LICENSES["shellcheck"]="https://github.com/koalaman/shellcheck/blob/master/LICENSE"

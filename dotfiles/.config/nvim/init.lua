@@ -109,6 +109,19 @@ require("lazy").setup({
       },
     },
   },
+  {'oribarilan/lensline.nvim',
+    tag = '2.0.0',
+    event = 'LspAttach',
+    opts = {
+      profiles = {{
+        name = "mine",
+        providers = {
+          { name = "usages", include = { "refs", "impls", }, },
+          { name = "last_author", },
+        },
+      }},
+    },
+  },
   { 'lewis6991/satellite.nvim', opts = {}, },
   { "soulis-1256/eagle.nvim", opts = {}, },
   { "mistweaverco/kulala.nvim", -- REST client

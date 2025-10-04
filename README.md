@@ -210,6 +210,9 @@ Neovim plugins are included as well:
 * [soulis-1256/eagle.nvim](https://github.com/soulis-1256/eagle.nvim)
   [Apache 2.0 License](https://github.com/soulis-1256/eagle.nvim/blob/main/LICENSE)
   mouse hover
+* [oribarilan/lensline.nvim](https://github.com/oribarilan/lensline.nvim/tree/2.0.0)
+  [MIT License](https://github.com/oribarilan/lensline.nvim/blob/2.0.0/LICENSE)
+  shows usages and git author above function definitions
 * [lua-language-server](https://github.com/LuaLS/lua-language-server)
   [MIT License](https://github.com/LuaLS/lua-language-server/blob/master/LICENSE)
   language server for lua
