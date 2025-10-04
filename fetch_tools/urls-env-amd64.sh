@@ -51,10 +51,10 @@ RG_URL="https://github.com/BurntSushi/ripgrep/releases/download/14.1.1/ripgrep-1
 
 # fzf + manpage + completion
 # contains only binary
-FZF_URL="https://github.com/junegunn/fzf/releases/download/v0.64.0/fzf-0.64.0-linux_amd64.tar.gz"
-FZF_MANPAGE_URL="https://raw.githubusercontent.com/junegunn/fzf/v0.64.0/man/man1/fzf.1"
-FZF_COMPLETION_URL="https://raw.githubusercontent.com/junegunn/fzf/v0.64.0/shell/completion.bash"
-FZF_KEYBINDS_URL="https://raw.githubusercontent.com/junegunn/fzf/refs/tags/v0.64.0/shell/key-bindings.bash"
+FZF_URL="https://github.com/junegunn/fzf/releases/download/v0.65.2/fzf-0.65.2-linux_amd64.tar.gz"
+FZF_MANPAGE_URL="https://raw.githubusercontent.com/junegunn/fzf/v0.65.2/man/man1/fzf.1"
+FZF_COMPLETION_URL="https://raw.githubusercontent.com/junegunn/fzf/v0.65.2/shell/completion.bash"
+FZF_KEYBINDS_URL="https://raw.githubusercontent.com/junegunn/fzf/refs/tags/v0.65.2/shell/key-bindings.bash"
 
 # starship
 # contains only binary
