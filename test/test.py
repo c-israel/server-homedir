@@ -147,7 +147,7 @@ def test_third_party_licenses():
             "cmp_luasnip.LICENSE", "luasnip.LICENSE", "neovim.LICENSE.txt", "snacks-nvim.LICENSE",
             "lazy-nvim.LICENSE", "mason-lspconfig-nvim.LICENSE", "nvim-lspconfig.LICENSE.md", "which-key-nvim.LICENSE",
             "lsd.LICENSE", "mason-nvim.LICENSE", "nvim-treesitter.LICENSE", "lua-console.nvim.LICENSE",
-            "lazydev.LICENSE", "eagle.nvim.LICENSE", "fd-APACHE.LICENSE-APACHE"
+            "lazydev.LICENSE", "eagle.nvim.LICENSE", "fd-APACHE.LICENSE-APACHE", "lsp_signature.nvim.LICENSE.txt"
         ],
         "BSD2Clause": ["lnav.LICENSE"],
         "CCBY3": ["jq.COPYING"],
@@ -167,7 +167,8 @@ def test_third_party_licenses():
             "basedpyright.LICENSE.txt", "neotest-python.LICENCE.md", "opencode.nvim.LICENSE", "copilot.lua.LICENSE",
             "copilot-cmp.LICENSE", "copilot-lualine.LICENSE", "codecompanion.nvim.LICENSE",
             "render-markdown.nvim.LICENSE", "mcphub.nvim.LICENSE.md", "vim-dadbod-ui.LICENSE",
-            "vim-dadbod-completion.LICENSE", "satellite.nvim.LICENSE", "fd-MIT.LICENSE-MIT", "lensline.nvim.LICENSE"
+            "vim-dadbod-completion.LICENSE", "satellite.nvim.LICENSE", "fd-MIT.LICENSE-MIT", "lensline.nvim.LICENSE",
+            "fidget.nvim.LICENSE"
         ],
         "MPL2": ["stylua.LICENSE.md"],
         "Unlicense": ["ripgrep.UNLICENSE"],

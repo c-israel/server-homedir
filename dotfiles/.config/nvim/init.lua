@@ -287,7 +287,10 @@ require("lazy").setup({
          { "grt", function() vim.lsp.buf.type_definition() end, desc="LSP: Goto Type Definition" },
          { "gO",  function() vim.lsp.buf.document_symbol() end, desc="LSP: Document Symbol" },
          { "C-s", function() vim.lsp.buf.signature_help() end, mode="i", desc="LSP: Signature Help" },
-      }
+      },
+    },
+    { "j-hui/fidget.nvim",
+      opts = { },
     },
     { "mfussenegger/nvim-dap",
       keys = {
@@ -573,6 +576,10 @@ require("lazy").setup({
       },
     },
   },
+  { "ray-x/lsp_signature.nvim",
+    event = "InsertEnter",
+    opts = { },
+  },
   {
     "hrsh7th/nvim-cmp",
     dependencies = {
@@ -728,68 +735,42 @@ if vim.env.NVIM_PYTHON_DEV == "1" then
 end
 require("mason-lspconfig").setup({
   ensure_installed = mason_lspconfig_ls_list,
-  automatic_enable = false,
 })
 require("dapui").setup()
 
 vim.lsp.inlay_hint.enable() -- enable inlay hints by default
 
--- Setup LSP with completion capabilities
+-- Setup LSPs with custom changes
 local capabilities = require("cmp_nvim_lsp").default_capabilities()
-require("lspconfig")
+require("lspconfig") -- ensure this is loaded before trying to configure lsps
 
-local lsps = {
-  {
-    "lua_ls",
-    {
-      capabilities = capabilities,
-      settings = {
-        Lua = {
-          hint = { enable = true }
-        },
+vim.lsp.config("basedpyright", {
+
+  capabilities = capabilities,
+  settings = {
+    basedpyright = {
+      analysis = {
+        typeCheckingMode = "basic",
+        autoImportCompletions = true,
+        autoSearchPaths = true,
+        --diagnosticMode = "openFilesOnly",
+        useLibraryCodeForTypes = true,
       },
-    }
+    },
   },
-}
+})
 
--- add python LSP to the list if needed
-if vim.env.NVIM_PYTHON_DEV == "1" then
-    table.insert(lsps, {
-      "basedpyright",
-      {
-        capabilities = capabilities,
-        settings = {
-          python = {
-            analysis = {
-              typeCheckingMode = "basic",
-              autoImportCompletions = true,
-              autoSearchPaths = true,
-              diagnosticMode = "openFilesOnly",
-              useLibraryCodeForTypes = true,
-              inlayHints = {
-                enabled = true,
-                variableTypes = true,
-                functionReturnTypes = true,
-                callArgumentNames = "all",
-                genericTypes = true,
-              },
-            },
-          },
-        },
-      }
-    })
-end
+vim.lsp.config("lua_ls", {
+  capabilities = capabilities,
+  settings = {
+    Lua = {
+      hint = { enable = true }
+    },
+  },
+})
 
--- Loop to enable and configure servers
-for _, lsp in ipairs(lsps) do
-  local name = lsp[1]
-  local config = lsp[2]
 
-  vim.lsp.enable(name)
-  if config then
-    vim.lsp.config(name, config)
-  end
-end
+
 
 -- nvim-lint - try linting automatically after write
 vim.api.nvim_create_autocmd({ "BufWritePost" }, {

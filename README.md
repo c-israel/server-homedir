@@ -211,6 +211,12 @@ Neovim plugins are included as well:
 * [oribarilan/lensline.nvim](https://github.com/oribarilan/lensline.nvim/tree/2.0.0)
   [MIT License](https://github.com/oribarilan/lensline.nvim/blob/2.0.0/LICENSE)
   shows usages and git author above function definitions
+* [j-hui/fidget.nvim](https://github.com/j-hui/fidget.nvim)
+  [MIT License](https://github.com/j-hui/fidget.nvim/blob/main/LICENSE)
+  shows LSP progress notifications
+* [ray-x/lsp_signature.nvim](https://github.com/ray-x/lsp_signature.nvim)
+  [Apache 2.0 License](https://github.com/ray-x/lsp_signature.nvim/blob/master/LICENSE.txt)
+  shows function signatures
 * [lua-language-server](https://github.com/LuaLS/lua-language-server)
   [MIT License](https://github.com/LuaLS/lua-language-server/blob/master/LICENSE)
   language server for lua
